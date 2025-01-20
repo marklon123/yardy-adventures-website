@@ -211,12 +211,12 @@
     .breadcumb {display:none;}
     p{color: white !important;}
     
-    
+/*     
     img{ width: 80% !importnat;
         height: 490px !important;
         
         
-    }
+    } */
     
     
 </style>

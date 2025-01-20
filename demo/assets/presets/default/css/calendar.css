@@ -1,0 +1,214 @@
+@import url(https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap);
+
+:root {
+    --calendar-bg-color: #EBF3EF;
+    --calendar-font-color: #427A27;
+    --calendar-todayDate-color: #427A27;
+    --calendar-today-bg-color: #a0c78e;
+    --calendar-today-color: #EBF3EF;
+    --weekdays-border-bottom-color: #fdd30278;
+    --calendar-current-date-bg-color: #fafef8d3;
+    --calendar-date-hover-color: #427A27;
+    --calendar-date-not-set-color: #939791;
+    --calendar-today-active-color: #427A27;
+    --calendar-appointment-days-color: #a0c78e;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.calendar {
+    background-color: var(--calendar-bg-color);
+    color: var(--calendar-font-color);
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.calendar_inner {
+    padding: 0.5rem;
+}
+
+.calendar_headings {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.month_year {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.arrow {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.current_date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: var(--calendar-current-date-bg-color);
+    border-radius: 5px;
+}
+
+.current_date .today {
+    background-color: var(--calendar-today-bg-color);
+    color: var(--calendar-today-color);
+    padding: 0.3rem;
+    border-radius: 5px;
+    text-shadow: 1px 1px 1px #939a8f;
+}
+
+.current_date .todayDate {
+    color: var(--calendar-todayDate-color);
+}
+
+.current_date .today, .todayDate {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.days_date ul {
+    list-style: none;
+}
+
+.days_date .days {
+    margin-bottom: 10px;
+}
+
+.days_date .days, .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+    padding-left: 0;
+}
+
+.days_date .days li, .dates li {
+    font-size: 0.8rem;
+}
+
+.days_date .dates li {
+    padding: .2rem;
+    transition: background-color .2s ease-in;
+    border-radius: 5px;
+}
+
+.days_date .days li {
+    padding: .8rem .2rem 0 .2rem;
+    border-bottom: 2px dotted var(--weekdays-border-bottom-color);
+    text-wrap: nowrap;
+}
+
+.days_date .dates li.inactive {
+    color: #acafab;
+}
+
+.days_date .dates li.date-not-set {
+    color: var(--calendar-date-not-set-color);
+}
+
+.days_date .dates li.set_appointment_date {
+    background-color: var(--calendar-appointment-days-color);
+}
+
+.days_date .dates li:hover:not(.date-not-set, .inactive) {
+    background-color: var(--calendar-date-hover-color);
+    color: var(--calendar-bg-color);
+    cursor: pointer;
+}
+
+.days_date .dates li.active {
+    background-color: var(--calendar-date-hover-color);
+    color: var(--calendar-bg-color);
+    text-shadow: none;
+}
+
+@media screen and (min-width: 350px) {
+    .calendar_inner {
+        padding: 1rem;
+    }
+
+    .month_year, .arrow {
+        font-size: 1.2rem;
+    }
+
+    .current_date {
+        padding: 0.6rem;
+    }
+
+    .current_date .today, .todayDate {
+        font-size: 0.9rem;
+    }
+    
+    .current_date .today {
+        padding: 0.5rem;
+    }
+
+    .days_date .days li, .dates li {
+        font-size: 0.8rem;
+    }
+
+    .days_date .dates li {
+        text-align: center;
+        padding: .4rem .2rem;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .days_date .days li, .dates li {
+        font-size: 0.9rem;
+    }
+}
+
+/*@media screen and (min-width: 900px) {
+    .days_date .days li, .dates li {
+        font-size: 1rem;
+    }
+
+    .days_date .dates li {
+        padding: .7rem .2rem;
+    }
+
+    .current_date {
+        padding: 0.7rem;
+    }
+
+    .days_date .days {
+        gap: 10px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .month_year, .arrow {
+        font-size: 1.4rem;
+    }
+
+    .current_date {
+        padding: 0.8rem;
+    }
+
+    .current_date .today, .todayDate {
+        font-size: 1rem;
+    }
+
+    .days_date .days {
+        font-weight: 500;
+    }
+
+    .days_date .dates li {
+        padding: .8rem .2rem;
+    }
+
+    .days_date .days li, .dates li {
+        font-size: 1rem;
+    }
+} */

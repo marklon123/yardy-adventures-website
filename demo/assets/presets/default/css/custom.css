@@ -3,13 +3,8 @@
     --primary-yellow: #FDD402;
     --primary-blue: #28B9F5;
     --primary-green: #427A27;
-    --secondary-blue: #2BA9EA;
-    --secondary-yellow: #F0C153;
-    --neutral: #EBF3EF;
-    --card-bg-color: #a0c78e;
-
-    --primary-green-rgba: 66, 122, 39;
-    --neutral-rgba: 235, 243, 239;
+    --neutral-primary: #EBF3EF;
+    --neutral-secondary: #a0c78e;
 }
 
 * {
@@ -44,7 +39,7 @@ a {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    padding: 0px!important;
+    padding: 0px !important;
 }
 
 .AdventureCard {
@@ -65,7 +60,7 @@ a {
     z-index: 20;
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    color: var(--neutral);
+    color: var(--neutral-primary);
     background-color: var(--primary-green);
     padding: 10px;
     padding-bottom: 4px;
@@ -116,7 +111,7 @@ a {
 }
 
 .adventure-card-readMore {
-    color: var(--neutral) !important;
+    color: var(--neutral-primary) !important;
     text-shadow: 1px 1px 2px var(--primary-yellow);
 }
 
@@ -130,7 +125,7 @@ a {
     display: block;
     border-radius: 10px;
     padding: 2px 5px;
-    color: var(--neutral) !important;
+    color: var(--neutral-primary) !important;
     background-color: var(--primary-green);
 }
 
@@ -160,7 +155,7 @@ a {
 }
 
 .modalExit .x {
-    color: var(--secondary-yellow);
+    color: var(--primary-yellow);
     font-size: 30px;
 }
 
@@ -212,14 +207,14 @@ a {
 .adventureCardModal-card-title {
     margin: 0;
     margin-top: 12px;
-    color: var(--secondary-yellow);
+    color: var(--primary-yellow);
 }
 
 .adventureCardModal-card-include,
 .adventureCardModal-card-include h4,
 .adventure-modal-info,
 .adventure-modal-list {
-    color: var(--neutral);
+    color: var(--neutral-primary);
 }
 
 .adventure-modal-info {
@@ -239,9 +234,9 @@ a {
     display: block;
     padding: 17px 0;
     border-radius: 10px;
-    color: var(--neutral) !important;
+    color: var(--neutral-primary) !important;
     text-shadow: 1px 1px 2px hsla(30, 3%, 15%, 0.705);
-    background-color: var(--secondary-yellow);
+    background-color: var(--primary-yellow);
     margin: 20px 0;
     font-size: 20px;
     cursor: pointer;
@@ -280,7 +275,7 @@ a {
 }
 
 .Modaltable tbody tr:nth-child(even) {
-    background-color: var(--secondary-yellow);
+    background-color: var(--primary-yellow);
 }
 
 .ModalTable tbody th {
@@ -296,11 +291,11 @@ a {
 .ExploreMainHeading,
 .ExploreSubHeading,
 .Explore>p {
-    color: var(--neutral);
+    color: var(--neutral-primary);
 }
 
 .ExploreSubHeading strong {
-    color: var(--secondary-yellow);
+    color: var(--primary-yellow);
 }
 
 .Explore>p {
@@ -310,7 +305,7 @@ a {
 
 .GetStarted {
     border-radius: 20px;
-    background-color: var(--secondary-yellow);
+    background-color: var(--primary-yellow);
     color: var(--primary-green) !important;
     font-weight: 600;
     padding: 15px 40px;
@@ -331,7 +326,7 @@ a {
 }
 
 .comingSoonMainHeadingContainer {
-    background-color: var(--neutral);
+    background-color: var(--neutral-primary);
 }
 
 .comingSoonMainHeading {
@@ -346,9 +341,9 @@ a {
 }
 
 .comingSoonSummerHeading {
-    background-color: var(--secondary-yellow);
-    border: 2px solid var(--secondary-yellow);
-    color: var(--neutral);
+    background-color: var(--primary-yellow);
+    border: 2px solid var(--primary-yellow);
+    color: var(--neutral-primary);
     border-radius: 50px;
 }
 
@@ -371,8 +366,110 @@ a {
 }
 
 /*booking page*/
-.con {
-    height: 1000px;
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.booking-hero-img-container {
+    width: 100%;
+    height: 400px;
+}
+
+.booking-hero-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+.booking-hero-content {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: var(--neutral-primary);
+    width: 100%;
+}
+
+.accordion-wrapper {
+    border: 1px solid var(--neutral-secondary);
+    overflow: hidden;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.accordion-wrapper:first-of-type {
+    margin-bottom: 15px;
+}
+
+.accordion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-content,
+.accordion {
+    padding: 10px;
+}
+
+.accordion small {
+    text-transform: lowercase;
+}
+
+.accordion.active {
+    background-color: var(--neutral-secondary);
+}
+
+.accordion-content:not(.details) {
+    text-align: center;
+}
+
+.accordion-title {
+    cursor: default;
+    font-size: 1rem;
+}
+
+.accordionHamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.accordionHamburger > div {
+    height: 2px;
+    width: 100%;
+    background-color: var(--neutral-secondary);
+}
+
+.accordionHamburger > div.active {
+    background-color: var(--primary-green);
+}
+
+.booking-hero-about .booking-hero-aboutContent {
+    text-align: center;
+}
+
+.accordion-content-container {
+    display: none;
+    overflow-y: auto;
+    height: 340px;
+}
+
+.accordion-content-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.accordion-content-container::-webkit-scrollbar-thumb {
+    background: #a0c78ec2;
+}
+
+.accordion-content-container.active {
+    display: block;
 }
 
 .booking_imageTitle_wrapper {
@@ -414,7 +511,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--neutral);
+    background-color: var(--neutral-primary);
     border-radius: 5px;
     padding: 20px;
     width: 100%;
@@ -439,7 +536,8 @@ a {
     padding: 6.5px;
     text-align: center;
     color: var(--primary-green);
-    background-color: var(--secondary-yellow);
+    background-color: var(--neutral-secondary);
+    font-weight: 500;
     border: none;
     border-radius: 5px;
     font-size: 0.8rem;
@@ -448,7 +546,7 @@ a {
 
 .time-slots li input.active,
 .time-slots li input:hover {
-    color: var(--neutral);
+    color: var(--neutral-primary);
     background-color: var(--primary-green);
 }
 
@@ -456,7 +554,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: var(--neutral);
+    background-color: var(--neutral-primary);
     border-radius: 5px;
     padding: 30px 15px;
 }
@@ -477,8 +575,14 @@ a {
 }
 
 .counter-pc .adult-amount,
-.children-amount {
+.children-amount,
+.total {
     text-align: center;
+}
+
+.counter-pc .total-amount {
+    margin: 0;
+    margin-top: 15px;
 }
 
 .counter-pc .adult-amount .adult-amount-original,
@@ -487,15 +591,17 @@ a {
 }
 
 .counter-pc .adult-amount p strong:first-of-type,
-.children-amount p strong:first-of-type {
+.children-amount p strong:first-of-type,
+.total-amount strong:first-of-type {
     font-weight: 400;
     color: #2e2e2eb8;
     font-size: 1rem;
 }
 
 .counter-pc .adult-amount p strong:not(:first-of-type),
-.children-amount p strong:not(:first-of-type) {
-    color: var(--secondary-yellow);
+.children-amount p strong:not(:first-of-type),
+.total-amount strong:not(:first-of-type) {
+    color: var(--primary-green);
     font-size: 1.4rem;
 }
 
@@ -522,7 +628,7 @@ a {
 .counter-pc .children-counter .Counter {
     cursor: pointer;
     color: var(--primary-green);
-    background-color: var(--secondary-yellow);
+    background-color: var(--neutral-secondary);
     border-radius: 5px;
     font-size: 1rem;
     padding: 8px;
@@ -536,11 +642,175 @@ a {
     margin: 0;
     padding: 10px;
     font-size: 1rem;
-    text-shadow: 1px 1px 2px var(--neutral);
+    text-shadow: 1px 1px 2px var(--neutral-primary);
 }
 
+.transportation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.shared-shuttle-wrapper {
+    background-color: var(--neutral-primary);
+    border-radius: 5px;
+}
 
+.shared-shuttle-wrapper, .private-transfer {
+    width: 100%;
+}
+
+.shared-shuttle-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.shared-shuttle {
+    white-space: nowrap;
+    margin-right: 7px;
+}
+
+.selectLocation {
+    font-size: 1.2rem;
+}
+
+.shared-shuttle select {
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    font-size: 1.1rem;
+}
+
+.shared-shuttle select > option:hover {
+    background-color: hsla(30, 3%, 15%, 0.705);
+}
+
+.shared-shuttle-container a, .private-transfer a {
+    color: var(--neutral-secondary)!important;
+    text-decoration: underline!important;
+}
+
+.counter-container {
+    display: flex;
+    justify-content: center;
+}
+
+.shuttle-title > .AMPP, .shuttle-title > .total {
+    font-size: 1.2rem;
+}
+
+.shuttle-title strong {
+    color: var(--primary-green);
+}
+
+.shared-shuttle-content .numberOF {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.counter-container .counters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    background: none;
+}
+
+.counter-container .counters .total-individuals {
+    font-size: 1.2rem;
+    width: 35px;
+}
+
+.counter-container .counters > span {
+    height: initial!important;
+}
+
+.counter-container .counters .counter {
+    color: var(--primary-green);
+    background-color: var(--neutral-secondary);
+    border-radius: 5px;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.private-transfer {
+    border-radius: 5px;
+}
+
+.countDownToApp {
+    border-radius: 50px;
+    background-color: var(--primary-yellow);
+    font-weight: 900;
+}
+
+.countDownToApp p {
+    font-size: 1.2rem;
+}
+
+.countDownToApp a {
+    color: var(--primary-green)!important;
+    font-weight: bold;
+}
+
+.WB {
+    display: flex;
+    justify-content: center;
+}
+
+.WB input[type='checkbox'] {
+    accent-color: var(--primary-green);
+    margin-right: 5px;
+}
+
+.WB label {
+    text-align: center;
+    display: inline-block;
+}
+
+.WB a {
+    color: var(--neutral-secondary)!important;
+    text-decoration: underline!important;
+}
+
+.submission input[type='submit'] {
+    border-radius: 5px;
+    padding: 20px 10px;
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    background-color: hsl(100, 52%, 32%, .2);
+    border: 1px solid var(--primary-green);
+    width: 300px;
+    transition: background-color .2s ease-in, color .2s ease-in;
+}
+
+.submission input[type='submit']:hover {
+    color: var(--neutral-primary);
+    background-color: var(--primary-green);
+}
+
+.shuttleTable {
+    min-width: 992px;
+}
+
+.shuttleTable thead th {
+    background-color: var(--neutral-secondary);
+}
+
+.shuttleTable tbody tr:nth-child(odd) {
+    background-color: var(--neutral-primary);
+}
+
+.shuttleTable tbody tr:nth-child(even) {
+    background-color: #c4d6bc;
+}
+
+.shuttleTable th, .shuttleTable tbody td {
+    padding: 20px 5px;
+}
+
+.shuttleTable tbody td {
+    vertical-align: top;
+}
 
 
 @media only screen and (min-width: 0px) and (max-width: 640px) {
@@ -626,6 +896,7 @@ a {
         width: 95% !important;
     }
 
+    /*booking*/
     .time-slots li input {
         padding: 8px;
         font-size: 1rem;
@@ -671,7 +942,7 @@ a {
     }
 }
 
-@media only screen and (min-width: 780px) {
+@media only screen and (min-width: 768px) {
 
     .card-container,
     .comingSoonSpring,
@@ -683,14 +954,38 @@ a {
         border-radius: 20px;
     }
 
+    /*booking*/
     .counter-pc .adult-counter,
     .counter-pc .children-counter {
         width: 120px;
     }
 
     .counter-pc .adult-amount p strong:first-of-type,
-    .children-amount p strong:first-of-type {
+    .children-amount p strong:first-of-type,
+    .total-amount strong:first-of-type {
         font-size: 1.2rem;
+    }
+
+    .transportation-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .shared-shuttle-wrapper, .private-transfer {
+        width: 48%;
+    }
+
+    .shared-shuttle-wrapper {
+        background-color: unset;
+    }
+
+    .private-transfer {
+        background-color: var(--neutral-primary);
+    }
+
+    .private-transfer h3:first-of-type {
+        white-space: nowrap;
     }
 }
 
@@ -729,10 +1024,48 @@ a {
         font-size: 55px;
     }
 
+    /*booking*/
+    .hero-container {
+        align-items: start;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .booking-hero-img-container {
+        width: 95%;
+        height: 500px;
+    }
+
+    .booking-hero-img-container, .booking-hero-content {
+        width: 49%;
+    }
+
+    .booking-hero-content {
+        height: 500px;
+    }
+
+    .accordion-title {
+        font-size: 1.2rem;
+    }
+
+    .accordionHamburger {
+        width: 35px;
+        height: 25px;
+    }
+
+    .accordionHamburger > div {
+        height: 2.2px;
+    }
+
+    .accordion, .accordion-content {
+        text-align: start;
+    }
+
     .calendar_time {
         display: flex;
         flex-direction: row;
         align-items: start;
+        justify-content: center;
     }
 
     .calendar {
@@ -752,7 +1085,8 @@ a {
     }
 
     .counter-pc .adult-amount p,
-    .counter-pc .children-amount p {
+    .children-amount p,
+    .total-amount {
         font-size: 1rem;
     }
 
@@ -762,12 +1096,13 @@ a {
     }
 
     .counter-pc .adult-amount p strong:first-of-type,
-    .children-amount p strong:first-of-type {
+    .children-amount p strong:first-of-type .total-amount strong:first-of-type {
         font-size: 1.2rem;
     }
 
     .counter-pc .adult-amount p strong:last-of-type,
-    .children-amount p strong:last-of-type {
+    .children-amount p strong:last-of-type,
+    .total-amount strong:last-of-type {
         font-size: 1.5rem;
     }
 
@@ -783,6 +1118,27 @@ a {
         font-size: 1.2rem;
     }
 
+    .shared-shuttle select {
+        padding: 10px;
+    }
+
+    .shuttle-title .AMPP, .shuttle-title .total {
+        font-size: 1.3rem;
+    }
+
+    .counter-container .counters .total-individuals {
+        width: 40px;
+    }
+}
+
+@media only screen and (min-width: 1150px) {
+    .accordion-title {
+        font-size: 1.4rem;
+    }
+
+    .shuttle-title .AMPP, .shuttle-title .total {
+        font-size: 1.5rem;
+    }
 }
 
 @media only screen and (min-width: 1400px) {
@@ -791,5 +1147,9 @@ a {
     .comingSoonSpring,
     .comingSoonSummer {
         grid-template-columns: repeat(5, 1fr);
+    }
+
+    .accordion-title {
+        font-size: 1.5rem;
     }
 }
