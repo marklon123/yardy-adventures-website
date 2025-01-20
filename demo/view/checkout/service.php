@@ -197,7 +197,7 @@ require "../home_header.php";
             </div>
         </section>
 
-        <section class="submission container my-3 my-lg-4 d-flex flex-column align-items-center align-items-md-start align-items-xl-end">
+        <section class="submission container my-3 my-lg-4 d-flex flex-column align-items-center align-items-md-start align-items-lg-end">
             <div class="d-flex flex-column align-items-center align-items-md-start">
                 <div class="WB mb-2 mb-lg-2">
                     <label for=""><input type="checkbox">I have read and agree to the <a href="">Booking and Cancellation Terms</a></label>
