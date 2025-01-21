@@ -43,8 +43,8 @@ include "home_header.php";
 
     <section class="heroContainer-fluid container-fluid d-flex justify-content-center py-5 mb-md-3">
         <div class="heroContainer text-center">
-            <h1 class="mb-3 heroContainer-heading">Embark on a Real Yardy adventure</h1>
-            <h2>Explore your wild side!</h2>
+            <h1 class="mb-3 heroContainer-heading">embark on a REAL YARDY adventure</h1>
+            <!-- <h2>Explore your wild side!</h2> -->
         </div>
     </section>
 
@@ -74,38 +74,6 @@ include "home_header.php";
                     <div class="adventure-card-body text-center mt-2">
                         <div class="adventure-card-title-container">
                             <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy White Water Rafting</h4>
-                        </div>
-                        <div class="adventure-card-links">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <h5 class="AdventureCard-Tag">1/2 Day</h5>
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy Pulsate.png" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Pulsate</h4>
-                        </div>
-                        <div class="adventure-card-links">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <h5 class="AdventureCard-Tag">Full Day</h5>
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy River Tubing.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Fully Pulsated</h4>
                         </div>
                         <div class="adventure-card-links">
                             <a class="adventure-card-bookNow">Book Now</a>
@@ -151,21 +119,6 @@ include "home_header.php";
                     <div class="adventure-card-body text-center mt-2">
                         <div class="adventure-card-title-container">
                             <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Horseback Riding</h4>
-                        </div>
-                        <div class="adventure-card-links text-center">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Dune Buggy.png" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Breezy Hill Dune Buggy Adventure</h4>
                         </div>
                         <div class="adventure-card-links text-center">
                             <a class="adventure-card-bookNow">Book Now</a>
@@ -230,7 +183,7 @@ include "home_header.php";
             <h2 class="ExploreMainHeading">You Will Also Want To Explore</h2>
             <h4 class="ExploreSubHeading"><strong>Become a Yardy Partner</strong> – <strong>Unlock Earnings</strong> in Eco-Adventures!</h4>
             <p>Join Yardy’s growing network of independent sellers and earn up to 25% commission by promoting unique eco-tours and activities.</p>
-            <a href="https://yardyadventures.com/demo/reseller" class="GetStarted">Get Started</a>
+            <a href="https://yardyadventures.com/demo/reseller" class="GetStarted mt-2 mt-md-3">Get Started</a>
         </div>
     </section>
 
@@ -241,7 +194,7 @@ include "home_header.php";
     <section class="container-fluid d-flex flex-column align-items-center mt-lg-3 mb-5">
         <div class="w-100 d-flex flex-column align-items-center comingSoon p-0 my-2 mx-0 my-md-3 my-lg-4 text-center">
             <div class="w-100 d-flex flex-column align-items-center">
-                <h2 class="comingSoonSpringHeading mb-3 mb-md-4 mt-3 mt-lg-3 py-2 px-3 py-lg-3 px-lg-5">Spring 2025</h2>
+                <h2 class="comingSoonSpringHeading mb-3 mb-md-4 mt-3 mt-lg-3 py-2 px-3 py-lg-3 px-lg-5">Summer 2025</h2>
                 <div class="comingSoonSpring container-sm">
                     <div class="AdventureCard-container d-flex justify-content-center">
                         <div class="AdventureCard">
@@ -311,7 +264,6 @@ include "home_header.php";
                     </div>
                     <div class="AdventureCard-container d-flex justify-content-center">
                         <div class="AdventureCard">
-
                             <div class="AdventureCard-image">
                                 <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
                             </div>
@@ -502,7 +454,7 @@ include "home_header.php";
                     </div>
                 </div>
                 <div class="w-100 mt-5 mt-lg-5 d-flex flex-column align-items-center">
-                    <h2 class="comingSoonSummerHeading mb-3 mb-md-4 mt-2 mt-lg-3 py-2 px-3 py-lg-3 px-lg-5">Summer 2025</h2>
+                    <h2 class="comingSoonSummerHeading mb-3 mb-md-4 mt-2 mt-lg-3 py-2 px-3 py-lg-3 px-lg-5">Fall 2025</h2>
                     <div class="comingSoonSummer container-sm">
                         <div class="AdventureCard-container d-flex justify-content-center">
                             <div class="AdventureCard">

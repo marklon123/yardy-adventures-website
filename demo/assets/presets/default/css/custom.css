@@ -28,10 +28,8 @@ a {
     font-weight: 800;
 }
 
-.heroContainer h2 {
+.heroContainer h1 {
     color: var(--primary-yellow);
-    margin-top: 20px;
-    margin-bottom: 0;
     text-shadow: 1px 1px 3px #57451d;
 }
 
@@ -49,7 +47,7 @@ a {
     max-width: 280px;
     border-radius: 10px;
     padding: 7px;
-    background-color: var(--card-bg-color);
+    background-color: var(--neutral-secondary);
     align-self: center;
 }
 
@@ -257,7 +255,7 @@ a {
 }
 
 .Modaltable thead {
-    background-color: #e0b141;
+    background-color: var(--primary-yellow);
 }
 
 .Modaltable th,
@@ -271,11 +269,11 @@ a {
 }
 
 .Modaltable tbody tr:nth-child(odd) {
-    background-color: #f0c86a;
+    background-color: #ebd047;
 }
 
 .Modaltable tbody tr:nth-child(even) {
-    background-color: var(--primary-yellow);
+    background-color: #fcd303;
 }
 
 .ModalTable tbody th {
@@ -309,7 +307,6 @@ a {
     color: var(--primary-green) !important;
     font-weight: 600;
     padding: 15px 40px;
-    margin-top: 20px;
     cursor: pointer;
 }
 
@@ -891,7 +888,6 @@ a {
 
     .GetStarted {
         padding: 20px 60px;
-        margin-top: 30px !important;
         font-size: 18px;
     }
 
@@ -1011,7 +1007,6 @@ a {
 
     .GetStarted {
         padding: 25px 80px;
-        margin-top: 40px !important;
         margin-bottom: 10px;
         font-size: 19px;
     }

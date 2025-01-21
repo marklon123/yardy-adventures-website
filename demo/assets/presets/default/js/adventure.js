@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 modalExit.addEventListener("click", ExitModal);
                 readMore.addEventListener("click", displayModal)
-            }, 50);
+            }, 100);
             backDrop.addEventListener("click", removeModalOnGlobalClick);
         });
     };
