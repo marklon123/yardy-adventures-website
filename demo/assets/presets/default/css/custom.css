@@ -269,11 +269,11 @@ a {
 }
 
 .Modaltable tbody tr:nth-child(odd) {
-    background-color: #ebd047;
+    background-color: #ffe562;
 }
 
 .Modaltable tbody tr:nth-child(even) {
-    background-color: #fcd303;
+    background-color: #ffdd31;
 }
 
 .ModalTable tbody th {
