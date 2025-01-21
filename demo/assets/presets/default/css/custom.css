@@ -211,7 +211,7 @@ a {
 .adventureCardModal-card-include,
 .adventureCardModal-card-include h4,
 .adventure-modal-info,
-.adventure-modal-list {
+.adventure-modal-list li {
     color: var(--neutral-primary);
 }
 
