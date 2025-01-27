@@ -880,6 +880,10 @@ a {
     margin-right: 10px;
 }
 
+.location .ticket-icons {
+    font-size: 1.35rem;
+}
+
 .ticketFooter h2 {
     font-size: .8rem;
 }
@@ -986,6 +990,10 @@ a {
 @media only screen and (min-width: 480px) {
     .ticketFooter h2 {
         font-size: .9rem;
+    }
+
+    .location .ticket-icons {
+        font-size: 1.4rem;
     }
 
     .ticketBody {
