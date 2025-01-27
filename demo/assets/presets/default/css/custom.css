@@ -813,6 +813,100 @@ a {
     padding: 0;
 }
 
+/*Ticket Page*/
+.ticket {
+    min-width: 300px;
+    width: 100%;
+    max-width: 560px;
+}
+
+.ticketHeader, .ticketFooter {
+    background-color: var(--primary-yellow);
+    width: 100%;
+}
+
+.ticketLogo {
+    width: 90px;
+    height: 90px;
+}
+
+.ticketLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.header1, .header2 {
+    color: var(--primary-green);
+}
+
+.header1 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.header2 {
+    font-size: 2.2rem;
+    font-weight: bolder;
+}
+
+.ticketBody {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.receipt p, .receipt_links {
+    font-size: .8rem;
+}
+
+.receipt_dateTime, .receipt_AC {
+    display: flex;
+    justify-content: space-between;
+}
+
+.receipt_dateTime p, .receipt_AC p {
+    width: 49%;
+}
+
+.ticketFooter * {
+    text-align: center;
+}
+
+.ticketFooter *:not(.slang) {
+    color: var(--primary-green);
+}
+
+.ticket-icons {
+    margin-right: 10px;
+}
+
+.ticketFooter h2 {
+    font-size: .8rem;
+}
+
+.ticket-icon-container {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: var(--primary-green);
+    margin-right: 10px;
+}
+
+.fa-envelope, .fa-location-crosshairs {
+    color: var(--primary-yellow)!important;
+}
+
+.slang {
+    color: var(--neutral-primary);
+    font-size: 1.4rem!important;
+}
+
+.receipt_links a {
+    color: var(--primary-yellow);
+    opacity: 1;
+    text-shadow: .5px .5px 1px var(--neutral-primary);
+    text-decoration: underline!important;
+}
 
 @media only screen and (min-width: 0px) and (max-width: 640px) {
     .adventure-card-title {
@@ -832,6 +926,10 @@ a {
 
     .adventure-card-links a {
         margin: 0;
+    }
+
+    .receipt p, .receipt_links {
+        margin-bottom: 15px;
     }
 }
 
@@ -865,6 +963,58 @@ a {
     .counter-pc {
         display: flex;
         justify-content: space-around;
+    }
+
+    .ticketLogo {
+        width: 115px;
+        height: 115px;
+    }
+
+    .header1 {
+        font-size: 1.2rem;
+    }
+    
+    .header2 {
+        font-size: 2.4rem;
+    }
+
+    .slang {
+        font-size: 1.8rem!important;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .ticketFooter h2 {
+        font-size: .9rem;
+    }
+
+    .ticketBody {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .receipt p, .receipt_links {
+        font-size: .9rem;
+    }
+}
+
+@media only screen and (min-width: 550px) {
+    .header1 {
+        font-size: 1.4rem;
+        margin-bottom: 7px;
+    }
+    
+    .header2 {
+        font-size: 2.8rem;
+    }
+
+    .slang {
+        font-size: 2rem!important;
+    }
+
+    .ticket-icon-container {
+        height: 28px;
+        width: 28px;
     }
 }
 
@@ -940,6 +1090,30 @@ a {
     .children label {
         font-size: 1.3rem;
     }
+
+    .ticketLogo {
+        width: 125px;
+        height: 125px;
+    }
+
+    .header1 {
+        font-size: 1.7rem;
+        margin-bottom: 10px;
+    }
+    
+    .header2 {
+        font-size: 3.4rem;
+    }
+
+    .ticketBody {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .ticket-icon-container {
+        height: 30px;
+        width: 30px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -986,6 +1160,11 @@ a {
 
     .private-transfer h3:first-of-type {
         white-space: nowrap;
+    }
+
+    .ticketLogo {
+        width: 150px;
+        height: 150px;
     }
 }
 
@@ -1127,6 +1306,10 @@ a {
 
     .counter-container .counters .total-individuals {
         width: 40px;
+    }
+    
+    .ticket-icon-container {
+        margin-right: 15px;
     }
 }
 
