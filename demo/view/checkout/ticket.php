@@ -53,7 +53,7 @@ include "../home_header.php";
 
         <footer class="ticketFooter px-2 py-3">
             <div class="location">
-                <h2 class="location"><i class="ticket-icons fa-solid fa-location-dot"></i>Fort William | Westmoreland | JAMAICA</h2>
+                <h2><i class="ticket-icons fa-solid fa-location-dot"></i>Fort William | Westmoreland | JAMAICA</h2>
             </div>
             <div class="email_num d-flex flex-column flex-sm-row align-items-center justify-content-around">
                 <h2 class="ticketEmail d-flex align-items-center justify-content-center">
