@@ -1,5 +1,32 @@
 <?php
 require "../home_header.php";
+
+$ch = curl_init();
+$url = "https://yardyadventures.com/demo/api/shuttles";
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$data = json_decode($response);
+
+function populateLocation()
+{
+    global $data;
+
+    foreach ($data as $shuttle) {
+        $id = $shuttle->id;
+        $location = isset($shuttle->location) ? $shuttle->location : "unknown";
+        $price = isset($shuttle->price) ? $shuttle->price : 0;
+        $pickup_times = isset($shuttle->pickup_times) ? $shuttle->pickup_times : "";
+        $return_times = isset($shuttle->return_times) ? $shuttle->return_times : "";
+
+        echo "<option value='$id' data-pickup_times='$pickup_times' data-return_times='$return_times' data-price='$price'>$location</option>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +47,46 @@ require "../home_header.php";
     </div>
     <section class="container-fluid">
         <div class="container p-0">
+            <div class="summaryBackDrop"></div>
+            <div class="summaryDetailContainerExitAnchor">
+                <div class="exit"><i class="fa-solid fa-x"></i></div>
+                <div class="summaryDetailContainer">
+                    <div class="summaryDetails">
+                        <h1 class="mb-4 mt-2 pb-3 heading">Booking summary</h1>
+                        <div class="detail">
+                            <p>Activity: <strong>Yardy Indulge</strong></p>
+                        </div>
+                        <div class="detail">
+                            <div class="date_time">
+                                <p class="detailDate">Date: <strong>02/4/2025</strong></p>
+                                <p class="detailTime">Time: <strong>8:00 - 16:00</strong></p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <h2 class="detailTotal mb-3">Total</h2>
+                            <div class="priceSummary">
+                                <p>Children total: <strong>300usd</strong></p>
+                                <p>Adult total: <strong>600usd</strong></p>
+                                <p>Shared shuttle total: <strong>900usd</strong></p>
+                                <p class="grandT">Grand total: <strong>900usd</strong></p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <h2 class="mb-3"># of Individuals</h2>
+                            <div class="guestInfo">
+                                <p># of children: <strong>2</strong></p>
+                                <p># of adults: <strong>2</strong></p>
+                                <p>shared shuttle # of individuals: <strong>4</strong></p>
+                            </div>
+                        </div>
+                        <div class="booking_paymentOptions">
+                            <h3 class="mb-3 pb-2">select payment method</h3>
+                            <button class="paypal">Paypal</button>
+                            <button class="creditCard">card</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="hero-container mt-2 mt-lg-0 mb-4 mb-lg-5">
                 <div class="booking-hero-img-container mb-1 mb-lg-0">
                     <img src="/demo/assets/images/frontend/adventure/Yardy Park Life.jpg" alt="">
@@ -45,7 +112,7 @@ require "../home_header.php";
                     </div>
                     <div class="accordion-wrapper">
                         <div class="accordion">
-                            <h3 class="accordion-title">Tour Details <small>(*requirements)</small></h3>
+                            <h3 class="accordion-title">Tour Details / Requirements</h3>
                             <div class="accordionHamburger">
                                 <div></div>
                                 <div></div>
@@ -65,7 +132,7 @@ require "../home_header.php";
                                     </ul>
                                 </li>
                                 <li><strong>Suggested add on:</strong> Clay massages by certified masseuse at the confluence</li>
-                                <li><strong>Booking cycle:</strong> Hourly |  8am – 4pm</li>
+                                <li><strong>Booking cycle:</strong> Hourly | 8am – 4pm</li>
                             </ul>
                         </div>
                     </div>
@@ -77,8 +144,39 @@ require "../home_header.php";
         <section class="booking_imageTitle_wrapper py-5 d-flex justify-content-center">
             <img class="booking-backdrop" src="/demo/assets/images/frontend/adventure/Yardy Park Life.jpg" />
             <div class="container booking_imageTitle_container d-flex justify-content-between">
-                <div class="bookingsForm w-100">
-                    <div class="calendar_time">
+                <div class="bookingsForm">
+                    <div class="counterContainer">
+                        <div class="counter-pc">
+                            <div class="adult">
+                                <div class="adult-amount">
+                                    <p class="adult-amount-original"></p>
+                                </div>
+                                <label for=""># of Adults</label>
+                                <div class="adult-counter">
+                                    <span><i class="fa-solid fa-minus Counter"></i></span>
+                                    <p class="adult-total">0</p>
+                                    <span><i class="fa-solid fa-plus Counter"></i></span>
+                                </div>
+                                <input class="adults" name="" type="text" hidden>
+                            </div>
+                            <div class="children">
+                                <div class="children-amount">
+                                    <p class="children-amount-original"></p>
+                                </div>
+                                <label class="children-total"># of Children</label>
+                                <div class="children-counter">
+                                    <span><i class="fa-solid fa-minus Counter"></i></span>
+                                    <p class="children-total">0</p>
+                                    <span><i class="fa-solid fa-plus Counter"></i></span>
+                                    <input class="children" name="" type="text" hidden>
+                                </div>
+                            </div>
+                            <div class="total">
+                                <p class="total-amount"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calendar_time mt-3 mt-lg-0">
                         <div class="calendar">
                             <div class="calendar_inner">
                                 <div class="calendar_headings">
@@ -107,41 +205,12 @@ require "../home_header.php";
                             </div>
                         </div>
                         <div class="time-container">
-                            <div class="time mt-2 mt-lg-0">
+                            <div class="time mt-2">
                                 <h2 class="time-heading">Available times</h2>
                                 <div class="time-separator"></div>
                                 <div class="time-slots-container w-100">
                                     <ul class="time-slots mt-2 mt-lg-3 p-0 m-0"></ul>
                                     <input class="children" name="" type="text" hidden>
-                                </div>
-                            </div>
-                            <div class="counter-pc mt-2 mt-lg-3">
-                                <div class="adult">
-                                    <div class="adult-amount">
-                                        <p class="adult-amount-original"></p>
-                                    </div>
-                                    <label for=""># of Adults</label>
-                                    <div class="adult-counter">
-                                        <span><i class="fa-solid fa-minus Counter"></i></span>
-                                        <p class="adult-total">0</p>
-                                        <span><i class="fa-solid fa-plus Counter"></i></span>
-                                    </div>
-                                    <input class="adults" name="" type="text" hidden>
-                                </div>
-                                <div class="children">
-                                    <div class="children-amount">
-                                        <p class="children-amount-original"></p>
-                                    </div>
-                                    <label class="children-total"># of Children</label>
-                                    <div class="children-counter">
-                                        <span><i class="fa-solid fa-minus Counter"></i></span>
-                                        <p class="children-total">0</p>
-                                        <span><i class="fa-solid fa-plus Counter"></i></span>
-                                        <input class="children" name="" type="text" hidden>
-                                    </div>
-                                </div>
-                                <div class="total">
-                                    <p class="total-amount"></p>
                                 </div>
                             </div>
                         </div>
@@ -153,21 +222,23 @@ require "../home_header.php";
             <h2 class="transportation-title text-center mt-2 mb-4 mb-md-0">Transportation</h2>
             <div class="transportation-container">
                 <div class="shared-shuttle-wrapper py-3 py-md-5 px-2">
-                    <div class="shared-shuttle-container mb-3 d-flex align-items-center">
+                    <div class="shared-shuttle-container mb-2 d-flex align-items-center">
                         <h3>Shared Shuttle</h3>
                         <a class="scrollToShared" href="">(click to view Shared Shuttle below)</a>
-                        <div class="shared-shuttle d-flex flex-column justify-content-center mb-1 mb-md-0">
+                        <div class="shared-shuttle d-flex flex-column align-items-center mb-1 mb-md-0">
                             <label for="" class="mt-2 text-center selectLocation">Select Location:</label>
-                            <select name="" id="" class="location mt-2 text-center">
-                                <option value="">none</option>
-                                <option data-value="25">Negril</option>
-                                <option data-value="30">Green Island/Lucea</option>
-                                <option data-value="30">Montego Bay</option>
-                                <option data-value="35">Rose Hall</option>
-                                <option data-value="25">Cruise Ship Port Montego Bay</option>
-                                <option data-value="25">South Cost</option>
-                                <option data-value="35">Falmouth</option>
-                                <option data-value="35">Cruise Ship Port - Falmouth</option>
+                            <select name="" id="" class="location mt-1 text-center">
+                                <option>none</option>
+                                <?php
+                                populateLocation();
+                                ?>
+                            </select>
+                            <label for="" class="mt-3 text-center hidden selectLocation">Pick up time:</label>
+                            <select name="" id="" class="pickUpTime hidden mt-1 text-center">
+                            </select>
+                            <p class="pickUpWhere my-1 mb-0"></p>
+                            <label for="" class="mt-3 text-center hidden selectLocation">Return time:</label>
+                            <select name="" id="" class="returnTime hidden mt-1 text-center">
                             </select>
                         </div>
                         <input class="children" name="" type="text" hidden>
@@ -175,7 +246,8 @@ require "../home_header.php";
                     <div class="shared-shuttle-content">
                         <div class="shuttle-title">
                             <h3 class="AMPP text-center">Per person: <strong>0USD</strong></h3>
-                            <h3 class="total text-center">Total: <strong>0USD</strong></h3>
+                            <h3 class="total text-center" data-value="0">Total: <strong>0USD</strong></h3>
+                            <h3 class="grandTotal text-center">Grand total: <strong>0USD</strong></h3>
                         </div>
                         <p class="numberOF text-center">Total # of individuals: 5</p>
                         <div class="counter-container">
@@ -200,192 +272,24 @@ require "../home_header.php";
         <section class="submission container my-3 my-lg-4 d-flex flex-column align-items-center align-items-md-start align-items-lg-end">
             <div class="d-flex flex-column align-items-center align-items-md-start">
                 <div class="WB mb-2 mb-lg-2">
-                    <label for=""><input type="checkbox">I have read and agree to the <a href="">Booking and Cancellation Terms</a></label>
+                    <label for=""><input type="checkbox">I have read and agree to the <a target="_blank" href="https://yardyadventures.com/demo/terms">Booking and Cancellation Terms</a></label>
                 </div>
                 <div class="WB">
                     <label for=""><input type="checkbox">I have read and acknowledge the <a href="">Guest Safety and Waiver</a></label>
                 </div>
             </div>
-            <input class="my-4" type="submit" value="submit" />
+            <input class="my-4" id="submit" type="submit" value="submit" />
         </section>
     </form>
 
     <div class="container-fluid">
-        <div class="container d-flex justify-content-center">
+        <div class="container d-flex justify-content-center mb-5">
             <div class="countDownToApp p-3 p-lg-4">
                 <p class="m-0 text-center">Count down the days and hours to your Yardy River Adventure on
                     Yardy Adventures Mobile App. <a href="">Here!</a></p>
             </div>
         </div>
     </div>
-
-    <section class="sharedShuttle container-fluid p-0">
-        <div class="container my-5">
-            <h4 class="mb-2">Shared Shuttle Schedule</h4>
-            <p class="mb-4 mb-lg-5">
-                <strong> Conditions:</strong> Guest should arrive at hotel lobby at least 10minutes before the scheduled pick-up time.
-                Shared transportation may be delayed 10 minutes on average. Undue delay will be communicated via email or Yardy Mobile App.
-                Contact our reservation team at information@yardyadventures.com with any concerns.
-            </p>
-            <div class="table-responsive">
-                <table class="shuttleTable">
-                    <thead>
-                        <tr>
-                            <th scope="col">Resort Areas</th>
-                            <th scope="col">Rate PP</th>
-                            <th scope="col">Average Travel Time each way on Shared transportation</th>
-                            <th scope="col">Pick-up Schedule</th>
-                            <th scope="col">Return Schedule from Yardy River Adventures</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Negril</td>
-                            <td>25</td>
-                            <td>1 hr 30 mins</td>
-                            <td>
-                                <ul>
-                                    <li>07:00 – Along Norman Manley Boulevard </li>
-                                    <li>07:10 – Along West End Road</li>
-                                    <li>09:30 – Along Norman Manley Boulevard</li>
-                                    <li>09:40 – Along West End Road</li>
-                                    <li>13:30 pm– Along Norman Manley Boulevard</li>
-                                    <li>13:40 pm– Along West End Road</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>13:00</li>
-                                    <li>15:00</li>
-                                    <li>17:00</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Green Island/Lucea</td>
-                            <td>30</td>
-                            <td>2 hrs</td>
-                            <td>
-                                <ul>
-                                    <li>07:00 – Lucea (Grand Palladium)</li>
-                                    <li>07:35 – Green Island</li>
-                                    <li>10:00 – Lucea (Grand Palladium)</li>
-                                    <li>10:35 – Green Island</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>13:00</li>
-                                    <li>16:00</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Montego Bay</td>
-                            <td>30</td>
-                            <td>1 hr 45 mins</td>
-                            <td>
-                                <ul>
-                                    <li>07:15 – Along Jimmy Cliff Avenue </li>
-                                    <li>07:30 – Freeport</li>
-                                    <li>10:15am – Along Jimmy Cliff Avenue </li>
-                                    <li>10:30 am – Freeport</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>13:15</li>
-                                    <li>16:15</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Rose Hall</td>
-                            <td>35</td>
-                            <td>1 hr 55 mins</td>
-                            <td>
-                                <ul>
-                                    <li>07:00 - Originating at Iberostar along highway up to Sandals Montego Bay</li>
-                                    <li>07:00 am - Originating at Iberostar along highway up to Sandals Montego Bay</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>13:15</li>
-                                    <li>16:15</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Cruise Ship Port
-                                Montego Bay</td>
-                            <td>25</td>
-                            <td>1 hr 15mins</td>
-                            <td>
-                                <ul>
-                                    <li>09:00</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>13:00</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>South Cost</td>
-                            <td>25</td>
-                            <td>45 mins</td>
-                            <td>
-                                <ul>
-                                    <li>07:15</li>
-                                    <li>10:15</li>
-                                    <li>14:15</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>13:00</li>
-                                    <li>17:00</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Falmouth</td>
-                            <td>35</td>
-                            <td>2 hrs</td>
-                            <td>
-                                <ul>
-                                    <li>08:00 - Originating at Royalton White Sands</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>13:00</li>
-                                    <li>17:00</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Cruise Ship Port - Falmouth</td>
-                            <td>35</td>
-                            <td>2hrs</td>
-                            <td>
-                                <ul>
-                                    <li>08:30</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>12:30</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
 
     <script src="/demo/assets/presets/default/js/booking.js"></script>
 </body>

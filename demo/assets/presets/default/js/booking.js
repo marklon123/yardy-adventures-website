@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 accordions.forEach(ac => ac.classList.remove("active"));
                 accordionContents.forEach(content => content.classList.remove("active"));
                 document.querySelectorAll(".accordionHamburger > div").forEach(line => line.classList.remove("active"));
-                
+
                 //add active to all
                 accordion.classList.add("active");
                 currentContent.classList.add("active");
@@ -60,29 +60,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const timeObj = {
         [todaysDate.toLocaleDateString()]: [
-            "8:00AM - 10:00PM",
-            "11:00AM - 12:00PM",
-            "2:00PM - 1:00PM",
+            "8:00",
+            "11:00",
+            "2:00",
         ],
         [generateFutureDate(1).toLocaleDateString()]: [
-            "9:00AM - 10:00PM",
-            "11:00AM - 12:00PM",
-            "2:00PM - 1:00PM",
+            "9:00",
+            "12:00",
+            "1:00",
         ],
         [generateFutureDate(2).toLocaleDateString()]: [
-            "8:00AM - 10:00PM",
-            "12:00AM - 1:00PM",
-            "2:00PM - 1:00PM",
+            "8:00",
+            "12:00",
+            "1:00",
         ],
         [generateFutureDate(3).toLocaleDateString()]: [
-            "10:00AM - 11:00PM",
-            "12:00AM - 1:00PM",
-            "2:00PM - 1:00PM",
+            "10:00",
+            "12:00",
+            "1:00",
         ],
         [generateFutureDate(4).toLocaleDateString()]: [
-            "8:00AM - 10:00PM",
-            "11:00AM - 12:00PM",
-            "2:00PM - 1:00PM",
+            "8:00",
+            "11:00",
+            "1:00",
         ],
     };
 
@@ -150,10 +150,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const daysNextMonth = (7 - (lastDate + firstDayIndex) % 7) % 7;
 
         let daysHTML = "";
+        const inactive = "inactive";
 
         // Add days from the previous month
         for (let i = lastDatePrevMonth - firstDayIndex + 1; i <= lastDatePrevMonth; i++) {
-            daysHTML += `<li class="inactive">${i}</li>`;
+            daysHTML += `<li class="${inactive}">${i}</li>`;
         }
 
         // Populate time_slots for today's date
@@ -168,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Current month days
-        const inactive = "inactive";
         for (let i = 1; i <= lastDate; i++) {
             const tempDate = new Date(year, month, i);
             const dateString = tempDate.toLocaleDateString();
@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         arrows.forEach((arrow) => {
             arrow.addEventListener("click", () => {
                 const month = currentDate.getMonth();
+                currentDate.setDate(1);
                 currentDate.setMonth(arrow.id === "prev" ? month - 1 : month + 1);
 
                 const newDate = new Date();
@@ -222,15 +223,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 //select date on month change to check for available times
                 const dates_li = dates.querySelectorAll("li");
                 let ActiveDate = null;
-                dates_li.forEach((time) => {
-                    if (time.classList.contains("active")) {
-                        ActiveDate = time;
-                        time.click();
+                dates_li.forEach((date) => {
+                    if (date.classList.contains("active")) {
+                        ActiveDate = date;
+                        date.click();
                     }
                 });
 
                 if (!ActiveDate) {
-                    time_slots.innerHTML = '<h2 class="no-set-time text-center py-2 w-100">no available time</h2>';
+                    time_slots.innerHTML = '<h2 class="no-set-time text-center py-2 w-100">please select a date</h2>';
                 }
 
                 selectDate();
@@ -279,11 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
                         selectedTime();
-
-                        // if (time && window.innerWidth >= 992) {
-                        time.scrollIntoView({ behavior: 'smooth', top: 0 });
-                        // }
-
                     }
                 }
             });
@@ -337,6 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 DisplayTotal();
                 TransIndividualTotal();
+                CalGrandTotal();
             });
         });
     }
@@ -357,6 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 DisplayTotal();
                 TransIndividualTotal();
+                CalGrandTotal();
             });
         });
     }
@@ -413,6 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const individualElement = document.querySelector(".total-individuals");
     const scrollToShared = document.querySelector(".transportation-container .scrollToShared");
     const sharedShuttleContainer = document.querySelector(".sharedShuttle");
+    const grandTotal = document.querySelector(".shared-shuttle-content .grandTotal");
 
     scrollToShared.addEventListener("click", (e) => {
         e.preventDefault();
@@ -427,16 +426,103 @@ document.addEventListener("DOMContentLoaded", () => {
     function setLocation() {
         location.addEventListener("change", () => {
             const selectedOption = location.options[location.selectedIndex];
-            AMPP.setAttribute("data-value", selectedOption.dataset.value);
-            AMPP.innerHTML = `Per person: <strong>${selectedOption.dataset.value ? selectedOption.dataset.value : 0}USD</strong>`;
-            amountPP = parseInt(selectedOption.dataset.value) || 0;
+            AMPP.setAttribute("data-value", selectedOption.dataset.price);
+            AMPP.innerHTML = `Per person: <strong>${selectedOption.dataset.price ? selectedOption.dataset.price : 0}USD</strong>`;
+            amountPP = parseInt(selectedOption.dataset.price) || 0;
 
             const numberOF = parseInt(TotalNumberOfIndividuals.dataset.value) || 0;
-            Total.innerHTML = `Total: <strong>${amountPP * numberOF}USD</strong>`;
+            const totalCal = amountPP * numberOF;
+            Total.innerHTML = `Total: <strong>${totalCal}USD</strong>`;
+            if (!Total.dataset.value) {
+                Total.setAttribute("data-value", totalCal);
+            }
+            Total.dataset.value = totalCal;
+            CalGrandTotal();
         });
     }
 
     setLocation();
+
+    //dynamically add pickup and return times
+    const shuttleLocation = document.querySelector(".shared-shuttle > .location");
+    const pickUpContainer = document.querySelector(".pickUpTime");
+    const pickUpWhere = document.querySelector(".pickUpWhere");
+    const returnContainer = document.querySelector(".returnTime");
+    const selectLocations = document.querySelectorAll(".selectLocation");
+
+    shuttleLocation.addEventListener("change", () => {
+        pickUpWhere.innerHTML = "";
+        const location = shuttleLocation.options[shuttleLocation.selectedIndex];
+
+        //unset pickUp and return containers
+        pickUpContainer.innerHTML = "";
+        returnContainer.innerHTML = "";
+
+        //set default option element
+        pickUpContainer.innerHTML = `<option class="default">-select available time-</option>`;
+        returnContainer.innerHTML = `<option class="default">-select available time-</option>`;
+
+        //populate pickUpContainer
+        const pickUpTimes = JSON.parse(location.getAttribute("data-pickup_times") || "[]");
+
+        if (shuttleLocation.selectedIndex != 0) {
+            selectLocations.forEach((location) => {
+                if (location.classList.contains("hidden")) {
+                    location.classList.remove("hidden");
+                }
+            });
+            pickUpContainer.classList.remove("hidden");
+            returnContainer.classList.remove("hidden");
+        } else {
+            selectLocations.forEach((location) => {
+                if (!location.classList.contains("hidden")) {
+                    location.classList.add("hidden");
+                }
+            });
+            pickUpContainer.classList.add("hidden");
+            returnContainer.classList.add("hidden");
+        }
+
+        if (pickUpTimes.length >= 0) {
+            console.log(pickUpTimes);
+            pickUpTimes.forEach((obj) => {
+                const option = document.createElement("option");
+                option.value = obj.time;
+                option.setAttribute("data-where", obj.where);
+                option.innerHTML = `${obj.time}`;
+                pickUpContainer.append(option);
+            });
+        } else {
+            const option = document.createElement("option");
+            option.textContent = "no available time";
+            pickUpContainer.append(option);
+        }
+
+        //populate pickUpContainer
+        const returnTimes = JSON.parse(location.getAttribute("data-return_times") || "[]");
+
+        if (returnTimes.length >= 0) {
+            returnTimes.forEach((obj) => {
+                const option = document.createElement("option");
+                option.value = obj.time;
+                option.textContent = obj.time;
+                returnContainer.append(option);
+            });
+        } else {
+            const option = document.createElement("option");
+            option.textContent = "no available time";
+            returnContainer.append(option);
+        }
+    });
+
+    pickUpContainer.addEventListener("change", () => {
+        const selectedPickUp = pickUpContainer.options[pickUpContainer.selectedIndex];
+
+        if (selectedPickUp.dataset.where) {
+            pickUpWhere.innerHTML = `Pick up location: ${selectedPickUp.dataset.where}`;
+        }
+    })
+
 
     //set transportation individual total
     function TransIndividualTotal() {
@@ -446,10 +532,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         TotalNumberOfIndividuals.setAttribute("data-value", IndividualsTotal);
         TotalNumberOfIndividuals.innerHTML = `Total # of individuals: ${IndividualsTotal}`;
-        individualElement.innerText = IndividualsTotal;  
+        individualElement.innerText = IndividualsTotal;
 
         const numberOF = parseInt(TotalNumberOfIndividuals.dataset.value) || 0;
-        Total.innerHTML = `Total: <strong>${amountPP * numberOF}USD</strong>`;
+        const totalCal = amountPP * numberOF;
+        if (!Total.dataset.value) {
+            Total.setAttribute("data-value", totalCal);
+        }
+        Total.dataset.value = totalCal;
+        Total.innerHTML = `Total: <strong>${totalCal}USD</strong>`;
     }
 
     TransIndividualTotal();
@@ -474,10 +565,50 @@ document.addEventListener("DOMContentLoaded", () => {
                     individualElement.innerText = individualAmount;
                 }
                 const numberOF = parseInt(TotalNumberOfIndividuals.dataset.value) || 0;
-                Total.innerHTML = `Total: <strong>${amountPP * numberOF}USD</strong>`;
+                const totalCal = amountPP * numberOF;
+                if (!Total.dataset.value) {
+                    Total.setAttribute("data-value", totalCal);
+                }
+                Total.dataset.value = totalCal;
+                Total.innerHTML = `Total: <strong>${totalCal}USD</strong>`;
+                CalGrandTotal();
             });
         });
     }
 
     setIndividualAmount();
+
+    /*set transport grand total*/
+    function CalGrandTotal() {
+        const ACtotal = totalAmount;
+        const transportTotal = parseFloat(Total.dataset.value);
+
+        const grandTotalAmount = ACtotal + transportTotal;
+
+        grandTotal.innerHTML = `Grand Total: <strong>${grandTotalAmount}USD</strong>`;
+    }
+
+    /*On submit*/
+    const submit = document.querySelector("#submit");
+    const summary = document.querySelector(".summaryDetailContainerExitAnchor");
+    const summaryBackDrop = document.querySelector(".summaryBackDrop");
+
+    const exit = document.querySelector(".summaryDetailContainerExitAnchor > .exit");
+
+    submit.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!summary.classList.contains("displayCheckoutSummary")) {
+            summaryBackDrop.classList.add("displayCheckoutSummary");
+            summary.classList.add("displayCheckoutSummary");
+        }
+    });
+
+    document.addEventListener("click", (e) => {
+        if (e.target == exit || exit.contains(e.target) || (!summary.contains(e.target) && submit !== e.target)) {
+            if (summary.classList.contains("displayCheckoutSummary")) {
+                summaryBackDrop.classList.remove("displayCheckoutSummary");
+                summary.classList.remove("displayCheckoutSummary");
+            }
+        }
+    });
 });
