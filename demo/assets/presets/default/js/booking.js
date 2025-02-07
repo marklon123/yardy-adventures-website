@@ -22,6 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
     DefaultAccordionDisplay();
     window.addEventListener("resize", DefaultAccordionDisplay);
 
+    //add class to accordion content
+    const AllaccordionContent = document.querySelectorAll(".accordion-content-container p");
+
+    if (AllaccordionContent.length > 0) {
+        AllaccordionContent.forEach((acc) => {
+            acc.classList.add("accordion-content");
+        })
+    }
+
     accordions.forEach((accordion, i) => {
         accordion.addEventListener("click", () => {
             const hamburgerLines = accordion.querySelectorAll(".accordionHamburger > div");
@@ -52,45 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const time_slots = document.querySelector(".time-slots");
     const todaysDate = new Date();
 
-    const generateFutureDate = (daysToAdd) => {
-        const date = new Date();
-        date.setDate(todaysDate.getDate() + daysToAdd);
-        return date;
-    };
-
-    const timeObj = {
-        [todaysDate.toLocaleDateString()]: [
-            "8:00",
-            "11:00",
-            "2:00",
-        ],
-        [generateFutureDate(1).toLocaleDateString()]: [
-            "9:00",
-            "12:00",
-            "1:00",
-        ],
-        [generateFutureDate(2).toLocaleDateString()]: [
-            "8:00",
-            "12:00",
-            "1:00",
-        ],
-        [generateFutureDate(3).toLocaleDateString()]: [
-            "10:00",
-            "12:00",
-            "1:00",
-        ],
-        [generateFutureDate(4).toLocaleDateString()]: [
-            "8:00",
-            "11:00",
-            "1:00",
-        ],
-    };
-
     // Calendar variables
     const today = document.querySelector(".today");
     const todayDate = document.querySelector(".todayDate");
     const days = document.querySelector(".days");
-    const dates = document.querySelector(".dates");
     const arrows = document.querySelectorAll(".arrow");
     const monthYear = document.querySelector(".month_year");
 
@@ -125,6 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render dates
     const DisplayCalendar = () => {
+        const dates = document.querySelector(".dates");
+        const calendar = document.querySelector(".calendar");
         const day = dmObj.days[currentDate.getDay()]; // Day of the week
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
@@ -158,32 +134,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Populate time_slots for today's date
-        const todayDateString = todaysDate.toLocaleDateString();
-        if (timeObj[todayDateString]) {
+        if (calendar && calendar.getAttribute("data-time-lots")) {
+            const AvailableTimes = JSON.parse(calendar.getAttribute("data-time-lots"));
+
             let times = "";
-            timeObj[todayDateString].forEach((time) => {
-                times += `<li><input name="" value="${time}" readonly/></li>`;
-            });
+            if (AvailableTimes.length >= 0) {
+                AvailableTimes.forEach((time) => {
+                    times += `<li><input value="${time}" readonly/></li>`;
+                });
+            } else {
+                times = '<li><h1>no available time</h1></li>';
+            }
             time_slots.innerHTML = times;
             selectedTime();
         }
 
         // Current month days
         for (let i = 1; i <= lastDate; i++) {
-            const tempDate = new Date(year, month, i);
-            const dateString = tempDate.toLocaleDateString();
+            const localCurrentDate = new Date(year, month, i);
 
-            // Store the array as a JSON string in data-value
-            const timeData = timeObj[dateString]
-                ? JSON.stringify(timeObj[dateString])
-                : null;
+            const todaysDate = new Date();
+            const isActive = todaysDate.toLocaleDateString() === localCurrentDate.toLocaleDateString() ? "active" : "";
+            const isAvailable = localCurrentDate > todaysDate || localCurrentDate.toLocaleDateString() === todaysDate.toLocaleDateString() ? "set_appointment_date" : "";
 
-            const isActive = i === date && timeData ? "active" : "";
-            const isAvailable = timeObj[dateString] ? "set_appointment_date" : "";
-
-            selectedTime();
-
-            daysHTML += `<li value="${i}" data-value='${timeData}' class="${isActive} ${isAvailable} ${!timeData ? inactive : ''}">${i}</li>`;
+            daysHTML += `<li value='${JSON.stringify(localCurrentDate.toLocaleDateString())}'
+             class="${isActive} ${isAvailable} ${(i < todaysDate.getDate() && localCurrentDate.getMonth() === todaysDate.getMonth()) ? inactive : ''}">${i}</li>`;
         }
 
 
@@ -200,18 +175,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Change Month
     const changeMonth = () => {
+        const dates = document.querySelector(".dates");
+        const todaysDate = new Date();
+        const todaysMonth = todaysDate.getMonth(); // Get the current month (0-indexed)
+        const todaysYear = todaysDate.getFullYear(); // Get the current year
+
         arrows.forEach((arrow) => {
             arrow.addEventListener("click", () => {
-                const month = currentDate.getMonth();
-                currentDate.setDate(1);
-                currentDate.setMonth(arrow.id === "prev" ? month - 1 : month + 1);
+                let currentMonth = currentDate.getMonth();
+                let currentYear = currentDate.getFullYear();
 
-                const newDate = new Date();
-                if (
-                    currentDate.getFullYear() === newDate.getFullYear() &&
-                    currentDate.getMonth() === newDate.getMonth()
-                ) {
-                    currentDate.setDate(newDate.getDate());
+                if (arrow.id == "next") {
+                    currentDate.setMonth(currentMonth + 1);
+                } else if (arrow.id == "prev") {
+                    if (currentYear === todaysYear && currentMonth > todaysMonth) {
+                        currentDate.setMonth(currentMonth - 1);
+                    }
+                }
+
+                currentMonth = currentDate.getMonth();
+                currentYear = currentDate.getFullYear();
+
+                if (currentDate.getFullYear() == todaysYear && currentDate.getMonth() == todaysMonth) {
+                    currentDate.setDate(todaysDate.getDate());
                 } else {
                     currentDate.setDate(1);
                 }
@@ -233,9 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!ActiveDate) {
                     time_slots.innerHTML = '<h2 class="no-set-time text-center py-2 w-100">please select a date</h2>';
                 }
-
-                selectDate();
-
             });
         });
     };
@@ -244,49 +227,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Select date
     function selectDate() {
-        const updateDates = dates.querySelectorAll("li");
-        updateDates.forEach((dateElement) => {
+        const dates = document.querySelector(".dates");
+        const Dates = dates.querySelectorAll("li");
+        Dates.forEach((dateElement) => {
             dateElement.addEventListener("click", () => {
                 if (!dateElement.classList.contains("inactive")) {
                     const activeDate = parseInt(dateElement.value, 10);
                     currentDate.setDate(activeDate);
 
-                    DisplayCalendar();
-
-                    let times = "";
-                    const parsedFullDate = JSON.parse(dateElement.dataset.value);
-                    if (parsedFullDate && parsedFullDate !== null) {
-                        // Parse the JSON string into an array
-                        const timesArray = parsedFullDate;
-                        timesArray.forEach((time) => {
-                            times += `<li><input name="" value="${time}" readonly/></li>`;
-                        });
-                        time_slots.innerHTML = times;
-
-                        const localStorage_Datevalue = JSON.stringify(parsedFullDate);
-                        const localStorage_activeTime = JSON.parse(localStorage.getItem("time"));
-
-                        if (localStorage_Datevalue === localStorage.getItem("date")) {
-                            const ActiveTime = time_slots.querySelector(`input[value="${localStorage_activeTime}"]`);
-                            if (ActiveTime) {
-                                ActiveTime.classList.add("active");
-                            }
+                    Dates.forEach((date) => {
+                        if (date.classList.contains("active")) {
+                            date.classList.remove("active");
                         }
+                    });
 
-                        if (localStorage_Datevalue !== localStorage.getItem("date")) {
-                            localStorage.removeItem("time");
-                            localStorage.removeItem("date");
-                            localStorage.setItem("date", localStorage_Datevalue);
-                        }
+                    dateElement.classList.add("active");
 
-                        selectedTime();
+                    if (currentDate.toLocaleDateString() !== localStorage.getItem("fullDate")) {
+                        localStorage.removeItem("fullDate");
+                        localStorage.setItem("fullDate", JSON.stringify(currentDate.toLocaleDateString()));
                     }
                 }
             });
         });
     }
-
-    selectDate();
 
     //selected time
     function selectedTime() {
@@ -297,7 +261,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 time.classList.add("active");
 
                 if (localStorage.getItem("time") != time.value) {
+                    localStorage.removeItem("time");
                     localStorage.setItem("time", JSON.stringify(time.value));
+
+                    //set name attribute for time slot/input
+                    times.forEach((ti) => {
+                        if (ti != time) {
+                            ti.removeAttribute("name");
+                        }
+                    });
+                    time.setAttribute("name", "time");
                 }
             });
         });
@@ -324,10 +297,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 let total = parseInt(adult_total.innerHTML, 10);
                 if (counter.classList.contains("fa-plus") && total < 15) {
                     total += 1
+                    adult_total.dataset.amount = total;
                     adult_total.innerHTML = total;
                     IncreaseAdultPrice();
                 } else if (counter.classList.contains("fa-minus") && total > 0) {
                     total -= 1
+                    adult_total.dataset.amount = total;
                     adult_total.innerHTML = total;
                     DecreaseAdultPrice();
                 }
@@ -345,10 +320,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 let total = parseInt(children_total.innerHTML, 10);
                 if (counter.classList.contains("fa-plus") && total < 15) {
                     total += 1
+                    children_total.dataset.amount = total;
                     children_total.innerHTML = total;
                     IncreaseChildrenPrice();
                 } else if (counter.classList.contains("fa-minus") && total > 0) {
                     total -= 1
+                    children_total.dataset.amount = total;
                     children_total.innerHTML = total;
                     DecreaseChildrenPrice();
                 }
@@ -360,7 +337,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //set adult original price
-    const AdultOriginalPrice = 210;
+    const adultPrice = Number(AdultOriginal.getAttribute("data-price"));
+    const AdultOriginalPrice = isNaN(adultPrice) ? 0 : adultPrice;
+    console.log(AdultOriginal.getAttribute("data-price"));
     let AdultTotalPrice = 0;
 
 
@@ -375,7 +354,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //set children original price
-    const ChildrenOriginalPrice = 109;
+    const childrenPrice = Number(ChildrenOriginal.dataset.price);
+    const ChildrenOriginalPrice = isNaN(childrenPrice) ? 0 : childrenPrice;
     let ChildrenTotalPrice = 0;
 
     ChildrenOriginal.innerHTML = `<strong>Per Child:</strong> <strong>${ChildrenOriginalPrice}USD</strong>`;
@@ -394,8 +374,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalAmount = 0;
 
     function DisplayTotal() {
-        totalAmount = AdultTotalPrice + ChildrenTotalPrice;
-        total.innerHTML = `<strong>Total:</strong> <strong>${totalAmount}USD</strong>`;
+        const totalNumberOfAdults = adult_total?.dataset?.amount ?? 0;
+        const totalNumberOfChildren = children_total?.dataset?.amount ?? 0;
+
+        const childrenTotal = AdultOriginalPrice * totalNumberOfAdults;
+        const adultTotal = ChildrenOriginalPrice * totalNumberOfChildren;
+        totalAmount = childrenTotal + adultTotal;
+        total.innerHTML = `<strong>Adventure Total:</strong> <strong>${totalAmount}USD</strong>`;
     }
 
     DisplayTotal();
@@ -409,17 +394,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const adult = document.querySelector(".adult-counter > .adult-total");
     const TotalNumberOfIndividuals = document.querySelector(".numberOF");
     const individualElement = document.querySelector(".total-individuals");
-    const scrollToShared = document.querySelector(".transportation-container .scrollToShared");
     const sharedShuttleContainer = document.querySelector(".sharedShuttle");
     const grandTotal = document.querySelector(".shared-shuttle-content .grandTotal");
-
-    scrollToShared.addEventListener("click", (e) => {
-        e.preventDefault();
-        sharedShuttleContainer.scrollIntoView({
-            behavior: 'smooth',
-            top: 0
-        });
-    })
 
 
     let amountPP = 0;
@@ -432,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const numberOF = parseInt(TotalNumberOfIndividuals.dataset.value) || 0;
             const totalCal = amountPP * numberOF;
-            Total.innerHTML = `Total: <strong>${totalCal}USD</strong>`;
+            Total.innerHTML = `Transportation Total: <strong>${totalCal}USD</strong>`;
             if (!Total.dataset.value) {
                 Total.setAttribute("data-value", totalCal);
             }
@@ -459,8 +435,8 @@ document.addEventListener("DOMContentLoaded", () => {
         returnContainer.innerHTML = "";
 
         //set default option element
-        pickUpContainer.innerHTML = `<option class="default">-select available time-</option>`;
-        returnContainer.innerHTML = `<option class="default">-select available time-</option>`;
+        pickUpContainer.innerHTML = `<option class="default">-select-</option>`;
+        returnContainer.innerHTML = `<option class="default">-select-</option>`;
 
         //populate pickUpContainer
         const pickUpTimes = JSON.parse(location.getAttribute("data-pickup_times") || "[]");
@@ -540,7 +516,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Total.setAttribute("data-value", totalCal);
         }
         Total.dataset.value = totalCal;
-        Total.innerHTML = `Total: <strong>${totalCal}USD</strong>`;
+        Total.innerHTML = `Transportation Total: <strong>${totalCal}USD</strong>`;
     }
 
     TransIndividualTotal();
@@ -570,7 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     Total.setAttribute("data-value", totalCal);
                 }
                 Total.dataset.value = totalCal;
-                Total.innerHTML = `Total: <strong>${totalCal}USD</strong>`;
+                Total.innerHTML = `Transportation Total: <strong>${totalCal}USD</strong>`;
                 CalGrandTotal();
             });
         });
@@ -579,11 +555,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setIndividualAmount();
 
     /*set transport grand total*/
+    let grandTotalOnClick = 0;
     function CalGrandTotal() {
         const ACtotal = totalAmount;
         const transportTotal = parseFloat(Total.dataset.value);
 
         const grandTotalAmount = ACtotal + transportTotal;
+        grandTotalOnClick = grandTotalAmount;
 
         grandTotal.innerHTML = `Grand Total: <strong>${grandTotalAmount}USD</strong>`;
     }
@@ -593,13 +571,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const summary = document.querySelector(".summaryDetailContainerExitAnchor");
     const summaryBackDrop = document.querySelector(".summaryBackDrop");
 
+    const detailDate = document.querySelector(".detail .detailDate");
+    const detailTime = document.querySelector(".detail .detailTime");
+    const shuttleTotal = document.querySelector(".detail .shuttleTotal");
+    const grandT = document.querySelector(".detail .grandT");
+    const numberOfChildren = document.querySelector(".detail .numberOfChildren");
+    const numberOfAdults = document.querySelector(".detail .numberOfAdults");
+    const numberOfShuttleIndividuals = document.querySelector(".detail .numberOfShuttleIndividuals");
+    const adultTotal = document.querySelector(".adult_total");
+    const childrenTotal = document.querySelector(".children_total");
+
     const exit = document.querySelector(".summaryDetailContainerExitAnchor > .exit");
 
     submit.addEventListener("click", (e) => {
         e.preventDefault();
         if (!summary.classList.contains("displayCheckoutSummary")) {
+            // const IndividualsTotal = childrenTotal + adultTotal;
+            const numberOFIndividuals = parseInt(TotalNumberOfIndividuals.dataset.value) || 0;
+            const transportTotal = parseFloat(Total.dataset.value);
+            const grandTotalAmount = grandTotalOnClick;
+            const totalNumberOfAdults = adult_total?.dataset?.amount ?? 0;
+            const totalNumberOfChildren = children_total?.dataset?.amount ?? 0;
+            const totalNumberOfIndividuals = amountPP * numberOFIndividuals;
+            const time = time_slots?.querySelector('[name="time"]')?.value ?? "not set";
+            const date = document?.querySelector(".dates > li.active")?.getAttribute("value").replace(/['"]/g, '') ?? "date not set";
+
+            detailDate.innerHTML = `Date: <strong>${date}</strong>`;
+            detailTime.innerHTML = `Time: <strong>${time}</strong>`;
+            shuttleTotal.innerHTML = `Shared shuttle total: <strong>${totalNumberOfIndividuals}USD</strong>`;
+            grandT.innerHTML = `Grand total: <strong>${grandTotalAmount}USD</strong>`;
+            numberOfChildren.innerHTML = `# of Children: <strong>${totalNumberOfChildren}</strong>`;
+            numberOfAdults.innerHTML = `# of Adults: <strong>${totalNumberOfAdults}</strong>`;
+            numberOfShuttleIndividuals.innerHTML = `shared shuttle # of individuals: <strong>${numberOFIndividuals}</strong>`;
+            adultTotal.innerHTML = `Adult total: <strong>${AdultTotalPrice}USD</strong>`;
+            childrenTotal.innerHTML = `Children total: <strong>${ChildrenTotalPrice}USD</strong>`;
+
+
             summaryBackDrop.classList.add("displayCheckoutSummary");
             summary.classList.add("displayCheckoutSummary");
+
+            console.log(adult_total, children_total);
         }
     });
 

@@ -85,16 +85,20 @@ a {
     width: 100%;
 }
 
+.adventure-card-title.xsFont {
+    font-size: 16px;
+}
+
 .adventure-card-title.smallFont {
     font-size: 20px;
 }
 
 .adventure-card-title.mediumFont {
-    font-size: 23px;
+    font-size: 21px;
 }
 
 .adventure-card-title.largeFont {
-    font-size: 27px;
+    font-size: 23px;
 }
 
 .adventure-card-body {
@@ -121,6 +125,9 @@ a {
 
 .adventure-card-bookNow {
     display: block;
+    width: 100%;
+    outline: none;
+    border: none;
     border-radius: 10px;
     padding: 2px 5px;
     color: var(--neutral-primary) !important;
@@ -165,9 +172,28 @@ a {
     border-radius: 10px;
 }
 
-.filterbuttons button {
-    color: var(--primary-yellow);
+.filterbuttons {
+    display: flex;
+    gap: 2px;
+    border-radius: 10px;
+    overflow: hidden;
     background-color: var(--neutral-primary);
+}
+
+.filterbuttons button {
+    all: unset;
+    color: var(--primary-green);
+    background-color: var(--neutral-secondary);
+    padding: 7px 0px;
+    width: 60px;
+    text-align: center;
+    font-size: .9rem;
+    transition: background-color .3s ease-in;
+}
+
+.filterbuttons button.active {
+    background-color: var(--primary-green);
+    color: var(--neutral-primary);
 }
 
 .modalBackdrop {
@@ -241,7 +267,7 @@ a {
     text-shadow: 1px 1px 2px hsla(30, 3%, 15%, 0.705);
     background-color: var(--primary-yellow);
     margin: 20px 0;
-    font-size: 20px;
+    font-size: 1rem;
     cursor: pointer;
     width: 100% !important;
 }
@@ -254,12 +280,12 @@ a {
 .ModaltableContainer {
     width: 100%;
     margin-top: 20px;
-    padding: 0 8px;
     overflow-x: auto;
 }
 
 .Modaltable {
     width: 100% !important;
+    min-width: 350px;
     border-collapse: collapse;
     border-spacing: 10px;
 }
@@ -581,7 +607,7 @@ a {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    opacity: .4;
+    opacity: .5;
     backdrop-filter: blur(10px);
 }
 
@@ -640,6 +666,11 @@ a {
     height: 2px;
     width: 100%;
     background-color: #e2eae2;
+}
+
+.time-slots-wrapper {
+    max-height: 100px;
+    overflow-y: auto;
 }
 
 .time-slots {
@@ -737,6 +768,7 @@ a {
 .counter-pc .children-counter {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 105px;
 }
 
@@ -766,10 +798,15 @@ a {
     text-shadow: 1px 1px 2px var(--neutral-primary);
 }
 
+/* .transportation-wrapper {
+    background-color: var(--neutral-primary);
+} */
+
 .transportation-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
 }
 
 .shared-shuttle-wrapper {
@@ -780,6 +817,10 @@ a {
 .shared-shuttle-wrapper,
 .private-transfer {
     width: 100%;
+}
+
+.private-transfer {
+    background-color: white;
 }
 
 .shared-shuttle-container {
@@ -838,6 +879,13 @@ a {
 .shuttle-title>.AMPP,
 .shuttle-title>.total {
     font-size: 1.2rem;
+}
+
+.shuttle-divider {
+    height: 1px;
+    width: 60%;
+    opacity: .5;
+    background-color: var(--neutral-secondary);
 }
 
 .shuttle-title strong {
@@ -913,7 +961,7 @@ a {
     text-decoration: underline !important;
 }
 
-.submission input[type='submit'] {
+.submission input[type='button'] {
     border-radius: 5px;
     padding: 20px 10px;
     font-size: 1.5rem;
@@ -924,7 +972,7 @@ a {
     transition: background-color .2s ease-in, color .2s ease-in;
 }
 
-.submission input[type='submit']:hover {
+.submission input[type='button']:hover {
     color: var(--neutral-primary);
     background-color: var(--primary-green);
 }
@@ -1144,6 +1192,16 @@ a {
         font-size: 2rem !important;
     }
 
+    .filterbuttons button {
+        padding: 8px 0px;
+        width: 70px;
+        font-size: 1rem;
+    }
+
+    .adventure-card-bookNow {
+        padding: 4px 5px;
+    }
+
     .ticket-icon-container {
         height: 28px;
         width: 28px;
@@ -1198,7 +1256,16 @@ a {
         width: 95% !important;
     }
 
+    .adventureModalBookNow {
+        font-size: 1.3rem;
+    }
+
     /*booking*/
+    .time-slots-wrapper {
+        max-height: 160px;
+        overflow-y: auto;
+    }
+
     .time-slots li input {
         padding: 8px;
         font-size: 1rem;
@@ -1303,14 +1370,6 @@ a {
         width: 48%;
     }
 
-    .shared-shuttle-wrapper {
-        background-color: unset;
-    }
-
-    .private-transfer {
-        background-color: var(--neutral-primary);
-    }
-
     .private-transfer h3:first-of-type {
         white-space: nowrap;
     }
@@ -1327,6 +1386,12 @@ a {
     .comingSoonSpring,
     .comingSoonSummer {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .filterbuttons button {
+        padding: 10px 0px;
+        width: 85px;
+        font-size: 1.2rem;
     }
 
     .adventure-card-links a {
@@ -1418,6 +1483,11 @@ a {
     .calendar_time {
         align-items: start;
         margin-right: auto;
+    }
+
+    .time-slots-wrapper {
+        max-height: 180px;
+        overflow-y: auto;
     }
 
     .time-slots {

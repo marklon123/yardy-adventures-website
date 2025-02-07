@@ -1,6 +1,17 @@
 <?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["cardID"])) {
+    $_SESSION["cardID"] = $_POST["cardID"];
+
+    // Redirect to checkout page
+    header("Location: checkout/service.php");
+    exit(); // Stop further execution
+}
+
 include "home_header.php";
 ?>
+
 
 <!doctype html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
@@ -40,147 +51,40 @@ include "home_header.php";
 </head>
 
 <body>
-
-    <section class="heroContainer-fluid container-fluid d-flex justify-content-center py-5 mb-md-3">
+    <section class="heroContainer-fluid container-fluid d-flex justify-content-center py-5 mb-md-2">
         <div class="heroContainer text-center">
-            <h1 class="mb-3 heroContainer-heading">embark on a REAL YARDY adventure</h1>
+            <h1 class="heroContainer-heading">embark on a REAL YARDY adventure</h1>
             <!-- <h2>Explore your wild side!</h2> -->
         </div>
     </section>
 
-    <section class="container-fluid card-container-fluid py-5">
-        <div class="container-sm card-container">
+    <div class="modalBackdrop"></div>
+
+    <div class="container-fluid">
+        <div class="container d-flex justify-content-end p-0">
+            <div class="filterbuttons my-4">
+                <button>all</button>
+                <button>single</button>
+                <button>half day</button>
+                <button>full day</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="container-fluid card-container-fluid pb-5">
+        <div action="" method="post" class="container-sm card-container">
             <div class="modalBackdrop"></div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy River Tubing.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy River Tubing</h4>
-                        </div>
-                        <div class="adventure-card-links">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy White Water Rafting.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy White Water Rafting</h4>
-                        </div>
-                        <div class="adventure-card-links">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy River Walk.png" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy River Walk</h4>
-                        </div>
-                        <div class="adventure-card-links">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy Park Life.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Park Life</h4>
-                        </div>
-                        <div class="adventure-card-links text-center">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy Horseback Riding.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Horseback Riding</h4>
-                        </div>
-                        <div class="adventure-card-links text-center">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <h5 class="AdventureCard-Tag">1/2 Day</h5>
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy Rush.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Rush</h4>
-                        </div>
-                        <div class="adventure-card-links text-center">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <h5 class="AdventureCard-Tag">1/2 Day</h5>
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy Indulge.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Indulge</h4>
-                        </div>
-                        <div class="adventure-card-links text-center">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="AdventureCard-container d-flex justify-content-center">
-                <div class="AdventureCard">
-                    <h5 class="AdventureCard-Tag">Full Day</h5>
-                    <div class="AdventureCard-image">
-                        <img src="/demo/assets/images/frontend/adventure/Yardy Rush.jpg" />
-                    </div>
-                    <div class="adventure-card-body text-center mt-2">
-                        <div class="adventure-card-title-container">
-                            <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Fully Rushed</h4>
-                        </div>
-                        <div class="adventure-card-links text-center">
-                            <a class="adventure-card-bookNow">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-        </div>
+        <form id="bookingForm" method="POST" action="">
+            <input type="hidden" id="hidden_card_id" name="cardID">
+            <input type="submit" id="id_set" value="Submit" style="display: none;">
+        </form>
+
     </section>
 
     <section class="container-fluid my-md-3">
         <div class="container Explore d-flex flex-column align-items-center text-center py-4 py-xl-5 px-2">
-            <h2 class="ExploreMainHeading">You Will Also Want To Explore</h2>
+            <h2 class="ExploreMainHeading">You may also want to explore</h2>
             <h4 class="ExploreSubHeading"><strong>Become a Yardy Partner</strong> – <strong>Unlock Earnings</strong> in Eco-Adventures!</h4>
             <p>Join Yardy’s growing network of independent sellers and earn up to 25% commission by promoting unique eco-tours and activities.</p>
             <a href="https://yardyadventures.com/demo/reseller" class="GetStarted mt-2 mt-md-3">Get Started</a>
@@ -254,9 +158,6 @@ include "home_header.php";
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="adventureModalBookNowContainer">
-                                            <a class="adventureModalBookNow">Book Now</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -319,9 +220,6 @@ include "home_header.php";
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="adventureModalBookNowContainer">
-                                            <a class="adventureModalBookNow">Book Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -389,9 +287,6 @@ include "home_header.php";
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="adventureModalBookNowContainer">
-                                            <a class="adventureModalBookNow">Book Now</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -437,16 +332,13 @@ include "home_header.php";
                                         <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Eats</h3>
                                         <p class="p-1 adventure-modal-info">Yardy embraces Jamaica’s <strong>‘Out of Many One People’</strong> motto. <strong>Yardy Eats</strong> is a dynamic array of culturally themed food outlets that features the diverse people that came to Jamaicans ‘Out of Many One People”.
                                         </p>
-                                        <ul class="adventure-modal-list my-2">
+                                        <ul class="adventure-modal-list mt-2">
                                             <li>Yardy Fried Chicken and Chips</li>
                                             <li>Yardy Dawgs and Burgers </li>
                                             <li>Sandwich | Salads | Soups</li>
                                             <li>Coffee | Tea with Jamaican Pastry and Frozen Novelties/Drink</li>
                                             <li>Other</li>
                                         </ul>
-                                        <div class="adventureModalBookNowContainer">
-                                            <a class="adventureModalBookNow">Book Now</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -600,9 +492,9 @@ include "home_header.php";
     <!-- all js link -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/demo/assets/presets/default/js/adventure.js"></script>
     <script src="https://yardyadventures.com/demo/assets/common/js/jquery-3.7.1.min.js"></script>
     <script src="https://yardyadventures.com/demo/assets/common/js/bootstrap.bundle.min.js"></script>
-    <script src="/demo/assets/presets/default/js/adventure.js"></script>
 </body>
 
 </html>

@@ -56,11 +56,12 @@
     <link rel="stylesheet" href="https://yardyadventures.com/demo/assets/presets/default/css/custom.css">
     <link rel="stylesheet" href="https://yardyadventures.com/demo/assets/presets/default/css/color.php?color=6ee723&secondColor=525CEB">
     
-    
+    <link rel="stylesheet" href="/demo/assets/presets/default/css/custom.css">
     <link href="form-validation.css" rel="stylesheet">    
     <!-- JQuery JS -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/6d9ea1370a.js" crossorigin="anonymous"></script>
 
     <style>
 
