@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render dates
     const DisplayCalendar = () => {
         const dates = document.querySelector(".dates");
-        const calendar = document.querySelector(".calendar");
         const day = dmObj.days[currentDate.getDay()]; // Day of the week
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
@@ -133,22 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
             daysHTML += `<li class="${inactive}">${i}</li>`;
         }
 
-        // Populate time_slots for today's date
-        if (calendar && calendar.getAttribute("data-time-lots")) {
-            const AvailableTimes = JSON.parse(calendar.getAttribute("data-time-lots"));
-
-            let times = "";
-            if (AvailableTimes.length >= 0) {
-                AvailableTimes.forEach((time) => {
-                    times += `<li><input value="${time}" readonly/></li>`;
-                });
-            } else {
-                times = '<li><h1>no available time</h1></li>';
-            }
-            time_slots.innerHTML = times;
-            selectedTime();
-        }
-
         // Current month days
         for (let i = 1; i <= lastDate; i++) {
             const localCurrentDate = new Date(year, month, i);
@@ -169,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dates.innerHTML = daysHTML;
         selectDate();
+        PopulateTimeSlots();
     };
 
     DisplayCalendar();
@@ -187,20 +171,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (arrow.id == "next") {
                     currentDate.setMonth(currentMonth + 1);
+                    if (currentYear == todaysYear && currentMonth == todaysMonth) {
+                        currentDate.setDate(todaysDate.getDate());
+                    } else {
+                        currentDate.setDate(1);
+                    }
                 } else if (arrow.id == "prev") {
-                    if (currentYear === todaysYear && currentMonth > todaysMonth) {
+                    if ((currentYear > todaysYear) || (currentYear === todaysYear && currentMonth > todaysMonth)) {
                         currentDate.setMonth(currentMonth - 1);
+                        if (currentYear == todaysYear && currentMonth == todaysMonth) {
+                            currentDate.setDate(todaysDate.getDate());
+                        } else {
+                            currentDate.setDate(1);
+                        }
                     }
                 }
 
+
                 currentMonth = currentDate.getMonth();
                 currentYear = currentDate.getFullYear();
-
-                if (currentDate.getFullYear() == todaysYear && currentDate.getMonth() == todaysMonth) {
-                    currentDate.setDate(todaysDate.getDate());
-                } else {
-                    currentDate.setDate(1);
-                }
 
                 DisplayCalendar();
 
@@ -216,9 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                if (!ActiveDate) {
-                    time_slots.innerHTML = '<h2 class="no-set-time text-center py-2 w-100">please select a date</h2>';
-                }
+                PopulateTimeSlots();
             });
         });
     };
@@ -232,24 +219,41 @@ document.addEventListener("DOMContentLoaded", () => {
         Dates.forEach((dateElement) => {
             dateElement.addEventListener("click", () => {
                 if (!dateElement.classList.contains("inactive")) {
-                    const activeDate = parseInt(dateElement.value, 10);
-                    currentDate.setDate(activeDate);
+                    const selectedDate = new Date(JSON.parse(dateElement.getAttribute("value"))); // Parse the date correctly
+                    currentDate.setFullYear(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
 
-                    Dates.forEach((date) => {
-                        if (date.classList.contains("active")) {
-                            date.classList.remove("active");
-                        }
-                    });
+                    // Remove previous active class
+                    Dates.forEach((date) => date.classList.remove("active"));
 
                     dateElement.classList.add("active");
 
-                    if (currentDate.toLocaleDateString() !== localStorage.getItem("fullDate")) {
-                        localStorage.removeItem("fullDate");
-                        localStorage.setItem("fullDate", JSON.stringify(currentDate.toLocaleDateString()));
-                    }
+                    // Save selected date
+                    localStorage.setItem("fullDate", JSON.stringify(currentDate.toLocaleDateString()));
+
+                    console.log(currentDate.toLocaleString()); // Debugging log
                 }
             });
         });
+    }
+
+    function PopulateTimeSlots() {
+        const calendar = document.querySelector(".calendar");
+
+        // Populate time_slots for today's date
+        if (calendar && calendar.getAttribute("data-time-lots")) {
+            const AvailableTimes = JSON.parse(calendar.getAttribute("data-time-lots"));
+
+            let times = "";
+            if (AvailableTimes.length >= 0) {
+                AvailableTimes.forEach((time) => {
+                    times += `<li><input value="${time}" readonly/></li>`;
+                });
+            } else {
+                times = '<li><h1>no available time</h1></li>';
+            }
+            time_slots.innerHTML = times;
+            selectedTime();
+        }
     }
 
     //selected time

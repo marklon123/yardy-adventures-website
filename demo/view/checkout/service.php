@@ -19,8 +19,6 @@ if (isset($_SESSION["cardID"])) {
 
     $adventure = json_decode($response, true);
 
-    print_r($adventure);
-
     if (json_last_error() !== JSON_ERROR_NONE) {
         die("JSON decode error " . json_last_error_msg());
     }

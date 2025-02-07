@@ -166,7 +166,7 @@ include "home_header.php";
                     <div class="AdventureCard-container d-flex justify-content-center">
                         <div class="AdventureCard">
                             <div class="AdventureCard-image">
-                                <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking Adventure.png" />
                             </div>
                             <div class="adventure-card-body text-center mt-2">
                                 <div class="adventure-card-title-container">
@@ -181,7 +181,7 @@ include "home_header.php";
                                 <div class="AdventureCardModal-ScrollContainer">
                                     <div class="AdventureCard-modal">
                                         <div class="AdventureCard-modal-imageContainer">
-                                            <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                            <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking Adventure.png" />
                                         </div>
                                         <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Mountain Biking</h3>
                                         <p class="p-1 adventure-modal-info">Journey on traditional farm inspired transportation to the top of Bird Mountain to behold the island’s single largest rock and proceed downhill on bicycles through villages. Through Woods Crag, Naggo Town. Stop at shops and scenic lookout points for an unparallel Yardy adventure with our experienced tour guides that knows every nook and cranny on this escape to nature.
@@ -226,78 +226,12 @@ include "home_header.php";
                             </div>
                         </div>
                     </div>
-                    <div class="AdventureCard-container d-flex justify-content-center">
-                        <div class="AdventureCard">
-                            <div class="AdventureCard-image">
-                                <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
-                            </div>
-                            <div class="adventure-card-body text-center mt-2">
-                                <div class="adventure-card-title-container">
-                                    <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Nature Farm</h4>
-                                </div>
-                                <div class="adventure-card-links text-center">
-                                    <a class="adventure-card-readMore">read more</a>
-                                </div>
-                            </div>
-                            <div class="AdventureCardModalExitAnchor">
-                                <div class="modalExit"><i class="x fa-solid fa-circle-xmark"></i></div>
-                                <div class="AdventureCardModal-ScrollContainer">
-                                    <div class="AdventureCard-modal">
-                                        <div class="AdventureCard-modal-imageContainer">
-                                            <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
-                                        </div>
-                                        <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Nature Farm</h3>
-                                        <p class="p-1 adventure-modal-info">Get aboard farm inspired transportation to taste seasonal fruits that are hand-picked from the trees on farms on the Georges Plain and surrounding mountains.
-                                            Learn about indigenous herbs and spices and interact with local farmers.
-                                            Learn about the sugar plantation era, hillside peasant farming and the creation of sustainable organic farming with new technologies.
-                                        </p>
-                                        <div class="ModaltableContainer d-flex justify-content-center">
-                                            <table class="Modaltable">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Duration:</th>
-                                                        <th scope="col">2 hours</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">Price:</th>
-                                                        <td>USD 85 pp Children (6-12 years) $65pp</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Includes:</th>
-                                                        <td>Guide and farm inspired transportation and lunch. Subject to time and availability access to blue holes, walking trails, natures jacuzzi and cultural highlights</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Tour Requirements:</th>
-                                                        <td>
-                                                            None
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Suggested add on</th>
-                                                        <td>
-                                                            Hike to the top of Big Rock and peer into Cuba on a clear day with binoculars. (Subject to availability and require additional time)
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Booking cycle </th>
-                                                        <td>Every 2 Hours | 8am, 10am, 12noon and 2pm</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="AdventureCardModalExitAnchor">
                         <div class="modalExit"><i class="x fa-solid fa-circle-xmark"></i></div>
                         <div class="AdventureCardModal-ScrollContainer">
                             <div class="AdventureCard-modal">
                                 <div class="AdventureCard-modal-imageContainer">
-                                    <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                    <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
                                 </div>
                                 <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Cultural Experience</h3>
                                 <p class="p-1 adventure-modal-info">Attend scheduled storytelling, patios, music and dance sessions.
@@ -312,7 +246,7 @@ include "home_header.php";
                     <div class="AdventureCard-container d-flex justify-content-center">
                         <div class="AdventureCard">
                             <div class="AdventureCard-image">
-                                <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
                             </div>
                             <div class="adventure-card-body text-center mt-2">
                                 <div class="adventure-card-title-container">
@@ -327,7 +261,7 @@ include "home_header.php";
                                 <div class="AdventureCardModal-ScrollContainer">
                                     <div class="AdventureCard-modal">
                                         <div class="AdventureCard-modal-imageContainer">
-                                            <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                            <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
                                         </div>
                                         <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Eats</h3>
                                         <p class="p-1 adventure-modal-info">Yardy embraces Jamaica’s <strong>‘Out of Many One People’</strong> motto. <strong>Yardy Eats</strong> is a dynamic array of culturally themed food outlets that features the diverse people that came to Jamaicans ‘Out of Many One People”.
@@ -351,7 +285,7 @@ include "home_header.php";
                         <div class="AdventureCard-container d-flex justify-content-center">
                             <div class="AdventureCard">
                                 <div class="AdventureCard-image">
-                                    <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                    <img src="/demo/assets/images/frontend/adventure/Yardy Night Life.jpg" />
                                 </div>
                                 <div class="adventure-card-body text-center mt-2">
                                     <div class="adventure-card-title-container">
@@ -367,7 +301,7 @@ include "home_header.php";
                                     <div class="AdventureCardModal-ScrollContainer">
                                         <div class="AdventureCard-modal">
                                             <div class="AdventureCard-modal-imageContainer">
-                                                <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                                <img src="/demo/assets/images/frontend/adventure/Yardy Night Life.jpg" />
                                             </div>
                                             <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Night Life</h3>
                                             <p class="p-1 adventure-modal-info">Our experience tour guide will cater to your pace while you explore and immerse yourself in the unscathed rustic outdoor at Yardy.
@@ -418,7 +352,7 @@ include "home_header.php";
                         <div class="AdventureCard-container d-flex justify-content-center">
                             <div class="AdventureCard">
                                 <div class="AdventureCard-image">
-                                    <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                    <img src="/demo/assets/images/frontend/adventure/Yardy Nature Farm.jpg" />
                                 </div>
                                 <div class="adventure-card-body text-center mt-2">
                                     <div class="adventure-card-title-container">
@@ -426,7 +360,6 @@ include "home_header.php";
                                     </div>
                                     <div class="adventure-card-links text-center">
                                         <a class="adventure-card-readMore">read more</a>
-
                                     </div>
                                 </div>
                                 <div class="AdventureCardModalExitAnchor">
@@ -434,7 +367,7 @@ include "home_header.php";
                                     <div class="AdventureCardModal-ScrollContainer">
                                         <div class="AdventureCard-modal">
                                             <div class="AdventureCard-modal-imageContainer">
-                                                <img src="/demo/assets/images/frontend/adventure/Yardy Mountain Biking.jpg" />
+                                                <img src="/demo/assets/images/frontend/adventure/Yardy Nature Farm.jpg" />
                                             </div>
                                             <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Nature Farm</h3>
                                             <p class="p-1 adventure-modal-info">Get aboard farm inspired transportation to taste seasonal fruits that are hand-picked from the trees on farms on the Georges Plain and surrounding mountains.

@@ -1082,6 +1082,11 @@ a {
     text-decoration: underline !important;
 }
 
+.no-set-time {
+    grid-column: span 2;
+    opacity: .6;
+}
+
 @media only screen and (min-width: 0px) and (max-width: 640px) {
     .adventure-card-title {
         font-size: 15px;
@@ -1273,11 +1278,6 @@ a {
 
     .booking_title {
         text-shadow: 1px 1px 2px #19350a96;
-    }
-
-    .no-set-time {
-        grid-column: span 2;
-        opacity: .6;
     }
 
     .time-heading {
