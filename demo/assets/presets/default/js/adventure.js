@@ -23,7 +23,6 @@ window.addEventListener("DOMContentLoaded", () => {
     fetchCards();
 
     function renderCards(arr, cate) {
-        console.log(arr);
 
         const filteredArr = cate ? arr.filter(item => item.category == cate) : arr;
         let cardList = "";
@@ -43,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div class='adventure-card-body text-center mt-2'>
                     <div class='adventure-card-title-container'>
-                        <h4 class='adventure-card-title p-2 px-1 px-sm-2 text-center'>${name}</h4>
+                        <h4 class='adventure-card-title visible_none p-2 px-1 px-sm-2 text-center '>${name}</h4>
                     </div>
                     <div class='adventure-card-links'>
                         <button class='adventure-card-bookNow'>Book Now</button>
@@ -57,35 +56,34 @@ window.addEventListener("DOMContentLoaded", () => {
         cardContainer.innerHTML = cardList;
         cardTitleSizeResponsiveness();
         TruncateCardTitleText();
-        setInputValue();
     }
 
-    function setInputValue() {
-        const adventureCards = Array.from(document.querySelectorAll(".AdventureCard"));
-        const setInputId = document.querySelector(".container-fluid #id_set");
+    // function setInputValue() {
+    //     const adventureCards = Array.from(document.querySelectorAll(".AdventureCard"));
+    //     const setInputId = document.querySelector(".container-fluid #id_set");
 
-        if (!setInputId) {
-            console.error("Submit button not found!");
-            return;
-        }
+    //     if (!setInputId) {
+    //         console.error("Submit button not found!");
+    //         return;
+    //     }
 
-        adventureCards.forEach((card) => {
-            const adventureCardButton = card.querySelector(".adventure-card-bookNow");
+    //     adventureCards.forEach((card) => {
+    //         const adventureCardButton = card.querySelector(".adventure-card-bookNow");
 
-            if (adventureCardButton) {
-                adventureCardButton.addEventListener("click", () => {
-                    // Set data-value in a hidden input
-                    const hiddenInput = document.querySelector("#hidden_card_id");
-                    if (hiddenInput) {
-                        hiddenInput.value = card.getAttribute("data-value");
-                    }
+    //         if (adventureCardButton) {
+    //             adventureCardButton.addEventListener("click", () => {
+    //                 // Set data-value in a hidden input
+    //                 const hiddenInput = document.querySelector("#hidden_card_id");
+    //                 if (hiddenInput) {
+    //                     hiddenInput.value = card.getAttribute("data-value");
+    //                 }
 
-                    // Click the submit button
-                    setInputId.click();
-                });
-            }
-        });
-    }
+    //                 // Click the submit button
+    //                 setInputId.click();
+    //             });
+    //         }
+    //     });
+    // }
 
 
     if (filterbuttons.length > 0) {
@@ -136,7 +134,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Function to truncate card title text based on container height
     const TruncateCardTitleText = () => {
         const adventureCards = Array.from(document.querySelectorAll(".AdventureCard"));
-        adventureCards.forEach((card) => {
+        adventureCards.forEach((card, index) => {
             const cardTitleContainer = card.querySelector(".adventure-card-body")?.querySelector(".adventure-card-title-container");
             const cardTitle = cardTitleContainer?.querySelector(".adventure-card-title");
 
@@ -162,6 +160,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 truncatedText = truncatedText.slice(0, -1); // Remove the last character
                 cardTitle.textContent = `${truncatedText}...`;
             }
+
+            cardTitle.classList.remove('visible_none');
 
             // Add ellipsis if text was truncated
             if (truncatedText.length < cardTitleImmutable.length) {
@@ -210,51 +210,4 @@ window.addEventListener("DOMContentLoaded", () => {
         TruncateCardTitleText();
         cardTitleSizeResponsiveness();
     });
-
-
 });
-
-(function ($) {
-    "use strict";
-
-    $(".langSel").on("change", function () {
-        window.location.href = "https://yardyadventures.com/demo/change/" + $(this).val();
-    });
-
-    $('.policy').on('click', function () {
-        $.get('https://yardyadventures.com/demo/cookie/accept', function (response) {
-            $('.cookies-card').addClass('d-none');
-        });
-    });
-
-    setTimeout(function () {
-        $('.cookies-card').removeClass('hide')
-    }, 2000);
-
-})(jQuery);
-
-$(document).ready(function () {
-    // Detect scroll and toggle class
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) { // Adjust the value as needed
-            $('.header').addClass('scrolled');
-        } else {
-            $('.header').removeClass('scrolled');
-        }
-    });
-});
-
-'undefined' === typeof _trfq || (window._trfq = []);
-'undefined' === typeof _trfd && (window._trfd = []), _trfd.push({
-    'tccl.baseHost': 'secureserver.net'
-}, {
-    'ap': 'cpsh-oh'
-}, {
-    'server': 'p3plzcpnl506098'
-}, {
-    'dcenter': 'p3'
-}, {
-    'cp_id': '9984899'
-}, {
-    'cp_cl': '8'
-}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.

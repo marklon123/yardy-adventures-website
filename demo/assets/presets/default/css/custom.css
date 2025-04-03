@@ -85,6 +85,10 @@ a {
     width: 100%;
 }
 
+.visible_none {
+    visibility: hidden;
+}
+
 .adventure-card-title.xsFont {
     font-size: 16px;
 }
@@ -192,8 +196,13 @@ a {
 }
 
 .filterbuttons button.active {
-    background-color: var(--primary-green);
-    color: var(--neutral-primary);
+    background-color: var(--primary-green)!important;
+    color: var(--neutral-primary)!important;
+}
+
+.filterbuttons button:hover {
+    background-color: var(--primary-green)!important;
+    color: var(--neutral-primary)!important;
 }
 
 .modalBackdrop {

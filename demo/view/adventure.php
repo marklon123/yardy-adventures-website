@@ -107,7 +107,7 @@ include "home_header.php";
                             </div>
                             <div class="adventure-card-body text-center mt-2">
                                 <div class="adventure-card-title-container">
-                                    <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Floating Restaurant</h4>
+                                    <h4 class="adventure-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Floating Restaurant Adventure</h4>
                                 </div>
                                 <div class="adventure-card-links text-center">
                                     <a class="adventure-card-readMore">read more</a>
@@ -120,7 +120,7 @@ include "home_header.php";
                                         <div class="AdventureCard-modal-imageContainer">
                                             <img src="/demo/assets/images/frontend/adventure/Floating Restaurant.png" />
                                         </div>
-                                        <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Floating Restaurant</h3>
+                                        <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Floating Restaurant Adventure</h3>
                                         <p class="p-1 adventure-modal-info">
                                             Experience Jamaican food and beverages aboard a floating restaurant gliding on the relaxing current of the Cabaritta and return to the park on a traditional farm inspired transportation. Have a private party for 2 or enjoy with the family and friends.
                                         </p>
@@ -170,7 +170,7 @@ include "home_header.php";
                             </div>
                             <div class="adventure-card-body text-center mt-2">
                                 <div class="adventure-card-title-container">
-                                    <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Mountain Biking</h4>
+                                    <h4 class="adventure-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Mountain Biking</h4>
                                 </div>
                                 <div class="adventure-card-links text-center">
                                     <a class="adventure-card-readMore">read more</a>
@@ -233,7 +233,7 @@ include "home_header.php";
                                 <div class="AdventureCard-modal-imageContainer">
                                     <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
                                 </div>
-                                <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Cultural Experience</h3>
+                                <h3 class="adventureCardModal-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Cultural Experience</h3>
                                 <p class="p-1 adventure-modal-info">Attend scheduled storytelling, patios, music and dance sessions.
                                     Complete it with on the spot assessment to earn bragging rights to using the Jamaica dialect and become a certified Yardy University.
                                 </p>
@@ -246,11 +246,11 @@ include "home_header.php";
                     <div class="AdventureCard-container d-flex justify-content-center">
                         <div class="AdventureCard">
                             <div class="AdventureCard-image">
-                                <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
+                                <img src="/demo/assets/images/frontend/adventure/Yardy Nature Farm.jpg" />
                             </div>
                             <div class="adventure-card-body text-center mt-2">
                                 <div class="adventure-card-title-container">
-                                    <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Eats</h4>
+                                    <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Nature Farm</h4>
                                 </div>
                                 <div class="adventure-card-links text-center">
                                     <a class="adventure-card-readMore">read more</a>
@@ -261,18 +261,52 @@ include "home_header.php";
                                 <div class="AdventureCardModal-ScrollContainer">
                                     <div class="AdventureCard-modal">
                                         <div class="AdventureCard-modal-imageContainer">
-                                            <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
+                                            <img src="/demo/assets/images/frontend/adventure/Yardy Nature Farm.jpg" />
                                         </div>
-                                        <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Eats</h3>
-                                        <p class="p-1 adventure-modal-info">Yardy embraces Jamaica’s <strong>‘Out of Many One People’</strong> motto. <strong>Yardy Eats</strong> is a dynamic array of culturally themed food outlets that features the diverse people that came to Jamaicans ‘Out of Many One People”.
+                                        <h3 class="adventureCardModal-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Nature Farm</h3>
+                                        <p class="p-1 adventure-modal-info">Get aboard farm inspired transportation to taste seasonal fruits that are hand-picked from the trees on farms on the Georges Plain and surrounding mountains.
+                                            Learn about indigenous herbs and spices and interact with local farmers.
+                                            Learn about the sugar plantation era, hillside peasant farming and the creation of sustainable organic farming with new technologies.
                                         </p>
-                                        <ul class="adventure-modal-list mt-2">
-                                            <li>Yardy Fried Chicken and Chips</li>
-                                            <li>Yardy Dawgs and Burgers </li>
-                                            <li>Sandwich | Salads | Soups</li>
-                                            <li>Coffee | Tea with Jamaican Pastry and Frozen Novelties/Drink</li>
-                                            <li>Other</li>
-                                        </ul>
+                                        <div class="ModaltableContainer d-flex justify-content-center">
+                                            <table class="Modaltable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Duration:</th>
+                                                        <th scope="col">2 hours</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Price:</th>
+                                                        <td>USD 85 pp Children (6-12 years) $65pp</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Includes:</th>
+                                                        <td>Guide and farm inspired transportation and lunch. Subject to time and availability access to blue holes, walking trails, natures jacuzzi and cultural highlights</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Tour Requirements:</th>
+                                                        <td>
+                                                            None
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Suggested add on</th>
+                                                        <td>
+                                                            Hike to the top of Big Rock and peer into Cuba on a clear day with binoculars. (Subject to availability and require additional time)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Booking cycle </th>
+                                                        <td>Every 2 Hours | 8am, 10am, 12noon and 2pm</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="adventureModalBookNowContainer">
+                                            <a class="adventureModalBookNow">Book Now</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -280,8 +314,113 @@ include "home_header.php";
                     </div>
                 </div>
                 <div class="w-100 mt-5 mt-lg-5 d-flex flex-column align-items-center">
-                    <h2 class="comingSoonSummerHeading mb-3 mb-md-4 mt-2 mt-lg-3 py-2 px-3 py-lg-3 px-lg-5">Fall 2025</h2>
+                    <h2 class="comingSoonSummerHeading mb-3 mb-md-4 mt-2 mt-lg-3 py-2 px-3 py-lg-3 px-lg-5">Spring 2026</h2>
                     <div class="comingSoonSummer container-sm">
+                        <div class="AdventureCard-container d-flex justify-content-center">
+                            <div class="AdventureCard">
+                                <div class="AdventureCard-image">
+                                    <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
+                                </div>
+                                <div class="adventure-card-body text-center mt-2">
+                                    <div class="adventure-card-title-container">
+                                        <h4 class="adventure-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Eats</h4>
+                                    </div>
+                                    <div class="adventure-card-links text-center">
+                                        <a class="adventure-card-readMore">read more</a>
+                                    </div>
+                                </div>
+                                <div class="AdventureCardModalExitAnchor">
+                                    <div class="modalExit"><i class="x fa-solid fa-circle-xmark"></i></div>
+                                    <div class="AdventureCardModal-ScrollContainer">
+                                        <div class="AdventureCard-modal">
+                                            <div class="AdventureCard-modal-imageContainer">
+                                                <img src="/demo/assets/images/frontend/adventure/comingSoon.jpg" />
+                                            </div>
+                                            <h3 class="adventureCardModal-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Eats</h3>
+                                            <p class="p-1 adventure-modal-info">Yardy embraces Jamaica’s <strong>‘Out of Many One People’</strong> motto. <strong>Yardy Eats</strong> is a dynamic array of culturally themed food outlets that features the diverse people that came to Jamaicans ‘Out of Many One People”.
+                                            </p>
+                                            <ul class="adventure-modal-list mt-2">
+                                                <li>Yardy Fried Chicken and Chips</li>
+                                                <li>Yardy Dawgs and Burgers </li>
+                                                <li>Sandwich | Salads | Soups</li>
+                                                <li>Coffee | Tea with Jamaican Pastry and Frozen Novelties/Drink</li>
+                                                <li>Other</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="AdventureCard-container d-flex justify-content-center">
+                            <div class="AdventureCard">
+                                <div class="AdventureCard-image">
+                                    <img src="/demo/assets/images/frontend/adventure/Yardy Night Adventurer.jpg" />
+                                </div>
+                                <div class="adventure-card-body text-center mt-2">
+                                    <div class="adventure-card-title-container">
+                                        <h4 class="adventure-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Night Adventure</h4>
+                                    </div>
+                                    <div class="adventure-card-links text-center">
+                                        <a class="adventure-card-readMore">read more</a>
+
+                                    </div>
+                                </div>
+                                <div class="AdventureCardModalExitAnchor">
+                                    <div class="modalExit"><i class="x fa-solid fa-circle-xmark"></i></div>
+                                    <div class="AdventureCardModal-ScrollContainer">
+                                        <div class="AdventureCard-modal">
+                                            <div class="AdventureCard-modal-imageContainer">
+                                                <img src="/demo/assets/images/frontend/adventure/Yardy Night Adventurer.jpg" />
+                                            </div>
+                                            <h3 class="adventureCardModal-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Night Adventure</h3>
+                                            <p class="p-1 adventure-modal-info">Experience Yardy River Tubing with abundant lighting from electricity generated by Yardy’s environmentally friendly hydroelectric plant.
+                                                Escape the ordinary and dive into fun and relaxation on our thrilling Yardy River Tubing Adventure! Race along rapid currents and pause to enjoy the surrounding scenery, where lush greenery meets crystal-clear waters. This guided experience combines the excitement of floating with the serenity of nature at NIGHT TIME.
+                                                Our expert tour guides ensures your safety while you create unforgettable memories with this innovative adventure.
+                                            </p>
+                                            <div class="ModaltableContainer d-flex justify-content-center">
+                                                <table class="Modaltable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Duration:</th>
+                                                            <th scope="col">2 hours</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Price:</th>
+                                                            <td>USD 85 pp   Children (6-12 years) N/A</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Includes:</th>:</th>
+                                                            <td>Guide, Tubing gear, supper  Subject to time and availability walking trails, natures jacuzzi and cultural highlights</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Tour Requirements:</th>
+                                                            <td>
+                                                                Water shoes
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Suggested add on</th>
+                                                            <td>
+                                                            Themed weekly late evening events including live music and abundant buffets of Yardy Eats.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Booking cycle </th>
+                                                            <td>Every  Hour |  6-8pm</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="adventureModalBookNowContainer">
+                                                <a class="adventureModalBookNow">Book Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="AdventureCard-container d-flex justify-content-center">
                             <div class="AdventureCard">
                                 <div class="AdventureCard-image">
@@ -289,7 +428,7 @@ include "home_header.php";
                                 </div>
                                 <div class="adventure-card-body text-center mt-2">
                                     <div class="adventure-card-title-container">
-                                        <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Night Life</h4>
+                                        <h4 class="adventure-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Night Life</h4>
                                     </div>
                                     <div class="adventure-card-links text-center">
                                         <a class="adventure-card-readMore">read more</a>
@@ -303,7 +442,7 @@ include "home_header.php";
                                             <div class="AdventureCard-modal-imageContainer">
                                                 <img src="/demo/assets/images/frontend/adventure/Yardy Night Life.jpg" />
                                             </div>
-                                            <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Night Life</h3>
+                                            <h3 class="adventureCardModal-card-title visible_none p-2 px-1 px-sm-2 text-center">Yardy Night Life</h3>
                                             <p class="p-1 adventure-modal-info">Our experience tour guide will cater to your pace while you explore and immerse yourself in the unscathed rustic outdoor at Yardy.
                                                 Enjoy themed weekly late evening events including live entertainment. Choose from sumptuous buffet or a la carte service. Stay amongst the crowd or book a secluded spot along the riverbank.
                                                 Our expert tour guides ensures your safety while you create unforgettable memories with this innovative adventure.
@@ -349,75 +488,6 @@ include "home_header.php";
                                 </div>
                             </div>
                         </div>
-                        <div class="AdventureCard-container d-flex justify-content-center">
-                            <div class="AdventureCard">
-                                <div class="AdventureCard-image">
-                                    <img src="/demo/assets/images/frontend/adventure/Yardy Nature Farm.jpg" />
-                                </div>
-                                <div class="adventure-card-body text-center mt-2">
-                                    <div class="adventure-card-title-container">
-                                        <h4 class="adventure-card-title p-2 px-1 px-sm-2 text-center">Yardy Nature Farm</h4>
-                                    </div>
-                                    <div class="adventure-card-links text-center">
-                                        <a class="adventure-card-readMore">read more</a>
-                                    </div>
-                                </div>
-                                <div class="AdventureCardModalExitAnchor">
-                                    <div class="modalExit"><i class="x fa-solid fa-circle-xmark"></i></div>
-                                    <div class="AdventureCardModal-ScrollContainer">
-                                        <div class="AdventureCard-modal">
-                                            <div class="AdventureCard-modal-imageContainer">
-                                                <img src="/demo/assets/images/frontend/adventure/Yardy Nature Farm.jpg" />
-                                            </div>
-                                            <h3 class="adventureCardModal-card-title p-2 px-1 px-sm-2 text-center">Yardy Nature Farm</h3>
-                                            <p class="p-1 adventure-modal-info">Get aboard farm inspired transportation to taste seasonal fruits that are hand-picked from the trees on farms on the Georges Plain and surrounding mountains.
-                                                Learn about indigenous herbs and spices and interact with local farmers.
-                                                Learn about the sugar plantation era, hillside peasant farming and the creation of sustainable organic farming with new technologies.
-                                            </p>
-                                            <div class="ModaltableContainer d-flex justify-content-center">
-                                                <table class="Modaltable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Duration:</th>
-                                                            <th scope="col">2 hours</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">Price:</th>
-                                                            <td>USD 85 pp Children (6-12 years) $65pp</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Includes:</th>
-                                                            <td>Guide and farm inspired transportation and lunch. Subject to time and availability access to blue holes, walking trails, natures jacuzzi and cultural highlights</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Tour Requirements:</th>
-                                                            <td>
-                                                                None
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Suggested add on</th>
-                                                            <td>
-                                                                Hike to the top of Big Rock and peer into Cuba on a clear day with binoculars. (Subject to availability and require additional time)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Booking cycle </th>
-                                                            <td>Every 2 Hours | 8am, 10am, 12noon and 2pm</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="adventureModalBookNowContainer">
-                                                <a class="adventureModalBookNow">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -426,7 +496,6 @@ include "home_header.php";
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/demo/assets/presets/default/js/adventure.js"></script>
-    <script src="https://yardyadventures.com/demo/assets/common/js/jquery-3.7.1.min.js"></script>
     <script src="https://yardyadventures.com/demo/assets/common/js/bootstrap.bundle.min.js"></script>
 </body>
 
